@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Firmin API reference</title>
+    <link rel="stylesheet" type="text/css" href="./css/docs.css">
+    
+<!--tracking-->
+</head><body>
+    <header id="header">
+        <h1 id="title" class="wrapper"><a href="./">Firmin</a></h1>
+        
+        <p id="subtitle" class="wrapper">
+            A JavaScript animation library using CSS
+            transforms and transitions
+        </p>
+    </header>
+    
+    <div id="main" class="wrapper">
+        <nav id="toc">
+            <h2>Contents</h2>
+            
+            <ul>
+                <li>
+                    <p><a href="./">Documentation</a></p>
+                    <ul>
+                        <li><a href="./#downloads">Downloads</a></li>
+                        <li><a href="./#using-firmin">Using Firmin</a></li>
+                        <li><a href="./#relative-transforms">Relative transforms</a></li>
+                        <li><a href="./#operation-order">Operation order</a></li>
+                        <li><a href="./#supported-platforms">Supported platforms</a></li>
+                        <li><a href="./#transition-properties">Transition properties</a></li>
+                        <li><a href="./#units">Units</a></li>
+                        <li><a href="./#axes">Axes</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><a href="./api.html">API reference</a></p>
+                    <ul>
+                        <li><a href="./api.html#api-animate">The <code>animate</code> function</a></li>
+                        <li><a href="./api.html#translation-functions">Translation functions</a></li>
+                        <li><a href="./api.html#scaling-functions">Scaling functions</a></li>
+                        <li><a href="./api.html#rotation-functions">Rotation functions</a></li>
+                        <li><a href="./api.html#skew-functions">Skew functions</a></li>
+                        <li><a href="./api.html#matrix-functions">Matrix functions</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="./changelog.html">Development history</a></li>
+                <li><a href="./downloads.html">Release archive</a></li>
+            </ul>
+        </nav>
+        
+        <div id="content">
+            <h1 id="api-reference">API reference</h1>
+<p>Each of the functions documented below has a complementary <a href="./#relative-transforms">relative transform function</a>, which can be used simply by appending <em>R</em> to the function name. For example, to use the relative version of the <code>translate</code> function, call <code>translateR</code>.</p>
+<p>Some functions have specialised variants which only apply the given transform to one axis—for example, <code>skew</code> has <code>skewX</code> and <code>skewY</code>. These <a href="./#axes">axis functions</a> will be mentioned together after the primary function description: they all have the same signature and work in the same way, save for applying the transform in question to different axes.</p>
+<p>When using a relative axis function, the <em>R</em> always goes on the end, so the relative version of scale applied to the <em>Y</em> axis would be <code>scaleYR</code>.</p>
+<p>Some functions have aliases—for example, <code>scale</code> is aliased as <code>scale3d</code>. This is solely to maintain parity at the API level with the various CSS transform specifications.</p>
+<p>In the examples that follow, animation durations will often be omitted in order to focus on the transformation at hand. However, the default duration is 0, so the duration argument must be passed if a transformation is not to be executed immediately with no intermediate stages (i.e., without animating).</p>
+<h3 id="api-animate">
+animate
+</h3>
+
+<p><code>Firmin.animate(element, description, [duration], [callback])</code></p>
+<p>The <code>animate</code> function is the foundation of Firmin’s API: every other transform function is essentially a wrapper around its functionality. Everything one can do with the other transform functions, one can do with <code>animate</code>, although it is usually less convenient.</p>
+<p>The <em>description</em> object describes the animation to be carried out. For example, this animation would move the element 400 pixels to the right and double its height.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> el = <span class="kw">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;an-element&quot;</span>),<br />    tf = {<br />        <span class="dt">translateX</span>: <span class="dv">400</span>,<br />        <span class="dt">scaleY</span>:     <span class="dv">2</span><br />    };<br /><br /><span class="kw">Firmin</span>.<span class="fu">animate</span>(el, tf);</code></pre>
+<p>Instead of using <code>animate</code> with a transform description, one can use the named transform functions. Each transform function (e.g. <code>translateX</code>, <code>skewY</code>) accepts a transform value as its second argument. This value is also what should be used in the <code>transform</code> object when calling <code>animate</code>. In other words,</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(el, {<span class="dt">skewX</span>: <span class="st">&quot;1rad&quot;</span>});</code></pre>
+<p>is equivalent to</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">skewX</span>(el, <span class="st">&quot;1rad&quot;</span>);</code></pre>
+<p>The optional <code>duration</code> argument specifies the duration of the animation in seconds; the default value is 0.</p>
+<p>A callback function can also be supplied. It will be executed when the animation is complete. For example, running the following would rotate the element through 135° and then change its contents to the string “Hello, world” when the animation completed after 0.7 seconds. Callbacks can be passed to all animation functions and methods.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">rotate</span>(el, <span class="st">&quot;135deg&quot;</span>, <span class="st">&quot;0.7s&quot;</span>, <span class="kw">function</span>(elem) {<br />    <span class="kw">elem</span>.<span class="fu">innerHTML</span> = <span class="st">&quot;Hello, world&quot;</span>;<br />});</code></pre>
+<p>The <code>animate</code> function also allows the animation it creates to be customised further, by providing <a href="./#transition-properties">transition properties</a> in the description object.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(el, {<br />    <span class="dt">translateX</span>:     <span class="dv">200</span>,<br />    <span class="dt">timingFunction</span>: <span class="st">&quot;ease-in-out&quot;</span>,<br />    <span class="dt">delay</span>:          -<span class="fl">0.5</span><br />}, <span class="dv">2</span>);</code></pre>
+<p>As well as transformations, other CSS properties can be modified by animations. For example, modifying an element’s opacity is quite common.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(el, {<br />    <span class="dt">opacity</span>: <span class="fl">0.5</span>,<br />    <span class="dt">padding</span>: <span class="st">&quot;10px&quot;</span><br />}, <span class="st">&quot;250ms&quot;</span>);</code></pre>
+<h2 id="translation-functions">Translation functions</h2>
+<h3 id="api-translate">
+translate
+</h3>
+
+<p><code>Firmin.translate(element, distances, [duration], [callback])</code></p>
+<p>The <em>distances</em> object can have three properties: the <code>x</code> (horizontal), <code>y</code> (vertical) and <code>z</code> (depth) distances which the element should be translated by. All distances must be numbers—the units are pixels. For example, the following translation would move the element 200 pixels to the right and 100 pixels upwards.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">translate</span>(el, {<br />    <span class="dt">x</span>: <span class="dv">200</span>,<br />    <span class="dt">y</span>: -<span class="dv">100</span><br />});</code></pre>
+<p>Any of the three axis arguments may be omitted.</p>
+<h3 id="api-translate3d">
+translate3d
+</h3>
+
+<p><code>translate3d</code> is an alias for <code>translate</code>, with the same interface and functionality.</p>
+<h3 id="api-translate-variants">
+translateX, translateY, translateZ
+</h3>
+
+<p><code>Firmin.translateX(element, distance, [duration], [callback])</code></p>
+<p>The <em>distance</em> of the translation must be a number, representing the number of pixels the element is to be translated by along the relevant axis. E.g., shifting it 50 pixels downwards would be accomplished by:</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">translateY</span>(el, <span class="dv">50</span>);</code></pre>
+<h2 id="scaling-functions">Scaling functions</h2>
+<h3 id="api-scale">
+scale
+</h3>
+
+<p><code>Firmin.scale(element, magnitudes, [duration], [callback])</code></p>
+<p>The <em>magnitudes</em> object can have three properties: the <code>x</code> (horizontal), <code>y</code> (vertical) and <code>z</code> (depth) values which the element is to be scaled by. Changes of scale are pure magnitudes; they have no units. As such, they should be positive numbers. For example, to scale an element to twice its width and two-thirds of its height:</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">scale</span>(el, {<br />    <span class="dt">x</span>: <span class="dv">2</span>,<br />    <span class="dt">y</span>: <span class="dv">2</span>/<span class="dv">3</span><br />});</code></pre>
+<h3 id="api-scale3d">
+scale3d
+</h3>
+
+<p><code>scale3d</code> is an alias for <code>scale</code>, with the same interface and functionality.</p>
+<h3 id="api-scale-variants">
+scaleX, scaleY, scaleZ
+</h3>
+
+<p><code>Firmin.scaleX(element, magnitude, [duration], [callback])</code></p>
+<p>The <em>magnitude</em> by which the element should be scaled by must be a positive number. To scale an element to four times its depth:</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">scaleZ</span>(el, <span class="dv">4</span>);</code></pre>
+<h2 id="rotation-functions">Rotation functions</h2>
+<h3 id="api-rotate">
+rotate
+</h3>
+
+<p><code>Firmin.rotate(element, angle, [duration], [callback])</code></p>
+<p>The <em>angle</em> by which the element will be rotated can be specified as a string, in which case it will be parsed as <a href="./#angles">an angle</a>, or as a number, in which case it is assumed that the angle is given in degrees.</p>
+<p>The <code>rotate</code> function will rotate an element by the given angle in the plane of the web page, i.e. about the <em>Z</em> axis.</p>
+<h3 id="api-rotate3d">
+rotate3d
+</h3>
+
+<p><code>Firmin.rotate3d(element, description, [duration], [callback])</code></p>
+<p>The <em>description</em> object should contain four properties: <code>x</code>, <code>y</code> and <code>z</code> values, and an <code>angle</code> value specifying the angle through which the element should be rotated. The <code>x</code>, <code>y</code> and <code>z</code> properties should be given as numbers: taken together, they are interpreted as a vector about which the element is to be rotated. The <code>angle</code> property should be a <a href="./#angles">string or number</a> specifying a CSS angle.</p>
+<p>In this example, the element would be rotated about the vector (0.25, 0.5, 0.75) by 1 radian.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">rotate3d</span>(el, {<br />    <span class="dt">x</span>:     <span class="fl">0.25</span>,<br />    <span class="dt">y</span>:     <span class="fl">0.5</span>,<br />    <span class="dt">z</span>:     <span class="fl">0.75</span>,<br />    <span class="dt">angle</span>: <span class="st">&quot;1rad&quot;</span><br />});</code></pre>
+<p>If any of the directional properties are not given, they will be assigned the value 0. In the following example, the element would be rotated 60° about the vector (0.5, 0, 0.3).</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">rotate3d</span>(el, {<br />    <span class="dt">x</span>:     <span class="fl">0.5</span>,<br />    <span class="dt">z</span>:     <span class="fl">0.3</span>,<br />    <span class="dt">angle</span>: <span class="dv">60</span><br />});</code></pre>
+<h3 id="api-rotate-variants">
+rotateX, rotateY, rotateZ
+</h3>
+
+<p><code>Firmin.rotateX(element, angle, [duration], [callback])</code></p>
+<p>These functions rotate the element about the given axis rather than an arbitrary vector, as the <code>rotate3d</code> function does. The <em>angle</em> should be given as a <a href="./#angles">string or a number</a>.</p>
+<h2 id="skew-functions">Skew functions</h2>
+<h3 id="api-skew">
+skew
+</h3>
+
+<p><code>Firmin.skew(element, angles, [duration], [callback])</code></p>
+<p>A <a href="http://www.quantdec.com/GIS/affine.htm#skew">skew transformation</a> along the X and Y axes is specified via an <em>angles</em> object with two properties: the <code>x</code> and <code>y</code> angles by which the element will be skewed. These should be given as <a href="./#angles">angles or numbers</a>. Either of these properties may be omitted and will in that case just be set to 0.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">skew</span>(el, {<br />    <span class="dt">x</span>: <span class="st">&quot;20deg&quot;</span>,<br />    <span class="dt">y</span>: <span class="st">&quot;1rad&quot;</span><br />});</code></pre>
+<h3 id="api-skew-variants">
+skewX, skewY
+</h3>
+
+<p><code>Firmin.skewX(element, angle, [duration], [callback])</code></p>
+<p>The <em>angle</em> by which the element will be skewed should be an <a href="./#angles">angle or a number</a>. Note that HTML elements are two-dimensional, and so there is no <code>skewZ</code> function as it would not make sense to skew an HTML element along the <em>Z</em> axis.</p>
+<p>In this example, the element would be skewed by 30° along the <em>Y</em> axis.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">skewY</span>(el, <span class="st">&quot;30deg&quot;</span>);</code></pre>
+<h2 id="matrix-functions">Matrix functions</h2>
+<h3 id="api-matrix">
+matrix
+</h3>
+
+<p><code>Firmin.matrix(element, vector, [duration], [callback])</code></p>
+<p>The <em>vector</em> supplied expresses a two-dimensional <a href="http://www.w3.org/TR/SVG/coords.html#TransformMatrixDefined">transformation matrix</a>. It should have either <em>6</em> or <em>16</em> elements, depending on whether one wishes to specify a 2D or a 3D transformation.</p>
+<p>2D transformations are represented by 3x3 matrices, but as only 6 values of the matrix are needed to compute the transformation, it can be represented as a 6-element vector.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">matrix</span>(el, [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>]);</code></pre>
+<p>3D transformations are represented by 4x4 matrices, and in this case all 16 values must be specified, as below. In both cases all values must be numbers; they are interpreted internally as representing either distances in pixels or angles in degrees.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">matrix</span>(el, [<br />    -<span class="fl">0.5</span>, <span class="fl">0.6</span>, -<span class="fl">0.7</span>, <span class="dv">0</span>,<br />    -<span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>,  <span class="dv">0</span>,<br />    <span class="fl">0.6</span>,  <span class="fl">0.7</span>, <span class="fl">0.2</span>,  <span class="dv">0</span>,<br />    <span class="dv">0</span>,    <span class="dv">0</span>,   <span class="dv">0</span>,    <span class="dv">1</span><br />]);</code></pre>
+<p>All other transformations can be represented in terms of a transformation matrix—this is what the library does internally. The <code>matrix</code> function can be useful when generating animations programmatically, but any transformation definable using this function can be described more perspicuously with either the named transform functions or a judicious use of <code>animate</code>.</p>
+<h3 id="api-matrix3d">
+matrix3d
+</h3>
+
+<p><code>matrix3d</code> is an alias for <code>matrix</code>, with the same interface and functionality.</p>
+        </div>
+    </div>
+    
+    <p id="footer" class="wrapper">
+        Firmin is developed by <a href="http://extralogical.net/">Benedict
+        Eastaugh</a> and released under the BSD license.
+    </p>
+<body></html>

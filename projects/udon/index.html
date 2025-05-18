@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Udon | Practical functional programming in JavaScript</title>
+    
+    <link rel="stylesheet" href="./css/docs.css">
+
+<!--tracking-->
+</head><body><div id="wrapper">
+    
+    <div id="header" class="clear">
+        <h1 id="title"><a href="./">Udon</a></h1>
+        
+        <p id="tagline">Practical functional programming in JavaScript</p>
+    </div>
+    
+    <div id="main">
+        <p><a href="https://github.com/beastaugh/udon">Udon</a> is a library providing basic support for functional programming idioms in JavaScript.</p>
+<h2 id="downloads">Downloads</h2>
+<p>Current version: <strong>1.2.0</strong>.</p>
+<ul>
+<li><a href="./downloads/udon-1.2.0.js">Development version</a></li>
+<li><a href="./downloads/udon-1.2.0-min.js">Production version</a> 4.5kb packed, 1.0kb gzipped</li>
+</ul>
+<p>This version adds the following new functions to the library: <code>id</code>, <code>concat</code>, <code>sum</code>, <code>product</code>, <code>elem</code>, <code>notElem</code>, <code>reverse</code>, <code>intersperse</code> and <code>intercalate</code>.</p>
+<h2 id="programming-with-udon">Programming with Udon</h2>
+<p>All the functions in this library are namespaced by the <code>Udon</code> object, so a reference in the documentation to e.g. <code>map</code> should be read as <code>Udon.map</code>. This means it should play nicely with other JavaScript libraries.</p>
+<p>Udon is known to work in all major browsers, as well as on <a href="http://nodejs.org">Node</a>. As well as being available from the download links above, you can install it with <a href="http://npmjs.org">npm</a>.</p>
+<pre><code>npm install -g udon
+</code></pre>
+<p>The Node library exports the Udon object as the module, so usage should follow this pattern.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> Udon = require(<span class="ch">'udon'</span>);<br /><br /><span class="kw">Udon</span>.<span class="fu">zip</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="ch">'a'</span>, <span class="ch">'b'</span>, <span class="ch">'c'</span>]);<br /><span class="co">// -&gt; [[1, 'a'], [2, 'b'], [3, 'c']]</span></code></pre>
+<p>Udon is designed for pure functional programming, so none of its public functions (i.e. those listed below) modify the values passed to them.</p>
+<h2 id="api-summary">API summary</h2>
+<ul>
+<li><a href="#api-function-operations">Function operations</a>
+<ul>
+<li><a href="#api-curry"><code>curry</code></a></li>
+<li><a href="#api-ncurry"><code>ncurry</code></a></li>
+<li><a href="#api-compose"><code>compose</code></a></li>
+<li><a href="#api-id"><code>id</code></a></li>
+</ul></li>
+<li><a href="#api-list-operations">List operations</a>
+<ul>
+<li><a href="#api-foldl"><code>foldl</code></a></li>
+<li><a href="#api-foldl1"><code>foldl1</code></a></li>
+<li><a href="#api-foldr"><code>foldr</code></a></li>
+<li><a href="#api-concat"><code>concat</code></a></li>
+<li><a href="#api-maximum"><code>maximum</code></a></li>
+<li><a href="#api-minimum"><code>minimum</code></a></li>
+<li><a href="#api-maximumBy"><code>maximumBy</code></a></li>
+<li><a href="#api-minimumBy"><code>minimumBy</code></a></li>
+<li><a href="#api-map"><code>map</code></a></li>
+<li><a href="#api-reverse"><code>reverse</code></a></li>
+<li><a href="#api-intersperse"><code>intersperse</code></a></li>
+<li><a href="#api-intercalate"><code>intercalate</code></a></li>
+<li><a href="#api-filter"><code>filter</code></a></li>
+<li><a href="#api-any"><code>any</code></a></li>
+<li><a href="#api-all"><code>all</code></a></li>
+<li><a href="#api-none"><code>none</code></a></li>
+<li><a href="#api-sum"><code>sum</code></a></li>
+<li><a href="#api-product"><code>product</code></a></li>
+<li><a href="#api-elem"><code>elem</code></a></li>
+<li><a href="#api-notElem"><code>notElem</code></a></li>
+<li><a href="#api-partition"><code>partition</code></a></li>
+<li><a href="#api-unfoldr"><code>unfoldr</code></a></li>
+<li><a href="#api-zip"><code>zip</code></a></li>
+<li><a href="#api-zipwith"><code>zipWith</code></a></li>
+</ul></li>
+</ul>
+<h2 id="api-function-operations">
+Function operations
+</h2>
+
+<p>Passing functions around as first-class objects is one of the cornerstones of functional programming. Udon provides several handy mechanisms for enabling function composition and reuse.</p>
+<h3 id="api-curry">
+<code>curry</code>
+</h3>
+
+<p>Currying is the process of converting a function of arity <em>n</em> into a nested set of functions with arity <em>1</em>, i.e. making it partially applicable. The <code>curry</code> function relies on the length property of the function to generate partially applicable functions, for example converting a function which accepts two arguments to a function which accepts one argument and returns a new function which also accepts one argument.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> add = <span class="kw">function</span>(a, b) {<br />    <span class="kw">return</span> a + b;<br />};<br /><br /><span class="kw">var</span> plus10 = <span class="kw">Udon</span>.<span class="fu">curry</span>(add)(<span class="dv">10</span>);</code></pre>
+<h3 id="api-ncurry">
+<code>ncurry</code>
+</h3>
+
+<p>The basic <code>curry</code> function will be fine for many circumstances, but sometimes (for example when dealing with variadic functions or functions with optional arguments) one needs to be explicit about the number of arguments a curried function can accept. The <code>ncurry</code> function is a generator for currying functions: it accepts a number and returns a curry function that transforms functions of that arity to, effectively, a nest of partially applicable functions, each of which has arity 1.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> add3 = <span class="kw">function</span>(a, b, c) {<br />    <span class="kw">return</span> a + b + c;<br />};<br /><br /><span class="kw">var</span> curry3 = <span class="kw">Udon</span>.<span class="fu">ncurry</span>(<span class="dv">3</span>),<br />    add3c  = curry3(add3);<br /><br />add3c(<span class="dv">1</span>)(<span class="dv">2</span>)(<span class="dv">3</span>); <span class="co">// -&gt; 6</span></code></pre>
+<h3 id="api-compose">
+<code>compose</code>
+</h3>
+
+<p>The <code>compose</code> function allows one to easily generate ‘pipelines’ of functions through which a value is passed. Note that the last function in the pipeline will be the first to be applied; this mirrors both the way the code would be written without <code>compose</code>, as a nest of function calls.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> tcs = <span class="kw">Udon</span>.<span class="fu">compose</span>([<span class="kw">Math</span>.<span class="fu">sin</span>, <span class="kw">Math</span>.<span class="fu">cos</span>, <span class="kw">Math</span>.<span class="fu">tan</span>]);<br /><br />tcs(<span class="fl">0.7</span>); <span class="co">// -&gt; 0.6176546934901699</span></code></pre>
+<p>It accepts an optional arity argument; if this is greater than 1 then the function pipeline will be made partially applicable.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> ceilMax = <span class="kw">Udon</span>.<span class="fu">compose</span>([<span class="kw">Math</span>.<span class="fu">ceil</span>, <span class="kw">Math</span>.<span class="fu">max</span>], <span class="dv">2</span>);<br /><br />ceilMax(<span class="fl">0.7</span>)(<span class="fl">1.1</span>); <span class="co">// -&gt; 2</span></code></pre>
+<h3 id="api-id">
+<code>id</code>
+</h3>
+
+<p>It’s occasionally useful to be able to pass a function that simply returns its argument to a higher-order function. <code>id</code> is that function.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">id</span>(<span class="dv">5</span>) == <span class="dv">5</span>;<br /><span class="kw">Udon</span>.<span class="fu">id</span>(<span class="st">&quot;foobar&quot;</span>) == <span class="st">&quot;foobar&quot;</span>;</code></pre>
+<p>Passing <code>id</code> to <code>map</code> produces a nice fixed point, as we can see from the following example where <code>xs0</code>, <code>xs1</code> and <code>xs2</code> are all equivalent.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> xs0 = [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>],<br />    xs1 = <span class="kw">Udon</span>.<span class="fu">id</span>([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>]),<br />    xs2 = <span class="kw">Udon</span>.<span class="fu">map</span>(<span class="kw">Udon</span>.<span class="fu">id</span>, [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>]);</code></pre>
+<h2 id="api-list-operations">
+List operations
+</h2>
+
+<p>Technically, these aren’t really list operations, because the underlying data structures are JavaScript arrays, not singly-linked lists (as in Lisps, ML, Haskell etc.). They are, however, close enough for most practical purposes.</p>
+<h3 id="api-foldl">
+<code>foldl</code>
+</h3>
+
+<p>Both fold functions accept a function and use it to reduce a list to another value. For example, you could use it to implement a <code>sum</code> function which adds all the elements of a list together:</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> sum = <span class="kw">function</span>(ns) {<br />    <span class="kw">return</span> <span class="kw">Udon</span>.<span class="fu">foldl</span>(<span class="kw">function</span>(a, b) {<br />        <span class="kw">return</span> a + b;<br />    }, <span class="dv">0</span>, ns);<br />};</code></pre>
+<h3 id="api-foldl1">
+<code>foldl1</code>
+</h3>
+
+<p>This is a version of <code>foldl</code> which uses the first element of the supplied array as the initial element. It thus requires the array to be nonempty.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> join = <span class="kw">function</span>(a, b) {<br />    <span class="kw">return</span> <span class="kw">a</span>.<span class="fu">toString</span>() + <span class="ch">'-'</span> + <span class="kw">b</span>.<span class="fu">toString</span>();<br />};<br /><br /><span class="kw">Udon</span>.<span class="fu">foldl1</span>(join, [<span class="dv">2011</span>, <span class="dv">05</span>, <span class="dv">08</span>]);<br /><span class="co">// -&gt; &quot;2011-05-08&quot;</span></code></pre>
+<h3 id="api-foldr">
+<code>foldr</code>
+</h3>
+
+<p>As the name implies, <code>foldl</code> is a left-associative function, which <code>foldr</code> is right-associative. So, for example, you could use <code>foldr</code> to convert an array into a singly-linked list.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> array2list = <span class="kw">function</span>(arr) {<br />    <span class="kw">return</span> <span class="kw">Udon</span>.<span class="fu">foldr</span>(<span class="kw">function</span>(head, tail) {<br />        <span class="kw">return</span> {<br />            <span class="dt">car</span>: head,<br />            <span class="dt">cdr</span>: tail<br />        };<br />    }, {<span class="dt">car</span>: null, <span class="dt">cdr</span>: null}, arr);<br />};</code></pre>
+<p>You can read more about folds <a href="http://en.wikipedia.org/wiki/Fold_(higher-order_function)">on Wikipedia</a>.</p>
+<h3 id="api-concat">
+<code>concat</code>
+</h3>
+
+<p>Flattens an array one level.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">concat</span>([[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]]);<br /><span class="co">// [1, 2, 3, 4]</span><br /><span class="kw">Udon</span>.<span class="fu">concat</span>([[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>]], [[<span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>]]]);<br /><span class="co">// [[1, 2], [3, 4], [5, 6], [7, 8]]</span></code></pre>
+<h3 id="api-maximum">
+<code>maximum</code>
+</h3>
+
+<p>Selects the largest number from an array. It uses <code>Math.max</code> under the hood so it won’t work for e.g. strings. Use <a href="#api-maximumBy"><code>Udon.maximumBy</code></a> if you need your own comparison function.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">maximum</span>([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">17</span>, <span class="dv">12</span>]);<br /><span class="co">// -&gt; 17</span></code></pre>
+<h3 id="api-minimum">
+<code>minimum</code>
+</h3>
+
+<p>Selects the smallest number from an array. It uses <code>Math.min</code> under the hood so it won’t work for e.g. strings. Use <a href="#api-minimumBy"><code>Udon.minimumBy</code></a> if you need your own comparison function.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">minimum</span>([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">17</span>, <span class="dv">12</span>]);<br /><span class="co">// -&gt; 1</span></code></pre>
+<h3 id="api-maximumBy">
+<code>maximumBy</code>
+</h3>
+
+<p>Uses a given comparison function to select the largest element of an array. Comparison functions should take two arguments, and return <code>0</code> if they are considered equal, <code>1</code> if the first argument is greater than the second, and <code>-1</code> if the second argument is greater than the first.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> longerThan = <span class="kw">function</span>(x, y) {<br />    <span class="kw">if</span> (<span class="kw">x</span>.<span class="fu">length</span> === <span class="kw">y</span>.<span class="fu">length</span>) {<br />        <span class="kw">return</span> <span class="dv">0</span>;<br />    } <span class="kw">else</span> <span class="kw">if</span> (<span class="kw">x</span>.<span class="fu">length</span> &gt; <span class="kw">y</span>.<span class="fu">length</span>) {<br />        <span class="kw">return</span> <span class="dv">1</span>;<br />    } <span class="kw">else</span> {<br />        <span class="kw">return</span> -<span class="dv">1</span>;<br />    }<br />};<br /><br /><span class="kw">Udon</span>.<span class="fu">maximumBy</span>(longerThan, [<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;foobar&quot;</span>, <span class="st">&quot;foobarbaz&quot;</span>]);<br /><span class="co">// -&gt; &quot;foobarbaz&quot;</span></code></pre>
+<h3 id="api-minimumBy">
+<code>minimumBy</code>
+</h3>
+
+<p>Uses a given comparison function to select the smallest element of an array. Comparison functions should operate the same way as those given to <a href="#api-maximumBy"><code>maximumBy</code></a>.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">minimumBy</span>(longerThan, [<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;foobar&quot;</span>, <span class="st">&quot;foobarbaz&quot;</span>]);<br /><span class="co">// -&gt; &quot;foo&quot;</span></code></pre>
+<h3 id="api-map">
+<code>map</code>
+</h3>
+
+<p>Returns the result of applying a given function to each element of a list.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">map</span>(<span class="kw">function</span>(n) {<br />    <span class="kw">return</span> n * n;<br />}, [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]);<br /><span class="co">// -&gt; [1,4,9]</span></code></pre>
+<h3 id="api-reverse">
+<code>reverse</code>
+</h3>
+
+<p>The <code>reverse</code> function provides a safe alternative to the [<code>reverse</code> method], as it does not mutate the input array.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">reverse</span>([<span class="ch">'a'</span>, <span class="ch">'b'</span>, <span class="ch">'c'</span>, <span class="ch">'d'</span>]);<br /><span class="co">// -&gt; ['d', 'c', 'b', 'a']</span></code></pre>
+<h3 id="api-intersperse">
+<code>intersperse</code>
+</h3>
+
+<p>Insert a separating element between the existing elements, like the <code>join</code> method does but without converting the array to a string.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">intersperse</span>(<span class="dv">10</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]);<br /><span class="co">// -&gt; [1, 10, 2, 10, 3, 10, 4]</span></code></pre>
+<h3 id="api-intercalate">
+<code>intercalate</code>
+</h3>
+
+<p>Effectively <code>intersperse</code> for arrays of arrays, but flattening the resultant array one level.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">intercalate</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [[<span class="dv">10</span>, <span class="dv">20</span>], [<span class="dv">30</span>, <span class="dv">40</span>], [<span class="dv">50</span>, <span class="dv">60</span>]]);<br /><span class="co">// -&gt; [10, 20, 1, 2, 3, 30, 40, 1, 2, 3, 50, 60]</span></code></pre>
+<h3 id="api-filter">
+<code>filter</code>
+</h3>
+
+<p>Returns the elements of a list which satisfy some predicate.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">filter</span>(<span class="kw">function</span>(n) {<br />    <span class="kw">return</span> n &lt; <span class="dv">5</span>;<br />}, [<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">21</span>,<span class="dv">2</span>]);<br /><span class="co">// -&gt; [4,3,2]</span></code></pre>
+<h3 id="api-any">
+<code>any</code>
+</h3>
+
+<p>Check whether any element of a list satisfies some predicate.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">any</span>(<span class="kw">function</span>(regex) {<br />    <span class="kw">return</span> <span class="kw">regex</span>.<span class="fu">exec</span>(<span class="st">&quot;http://&quot;</span>);<br />}, [<span class="kw">new</span> <span class="kw">RegExp</span>(<span class="st">&quot;[a-z]+:\/\/&quot;</span>), <span class="kw">new</span> <span class="kw">RegExp</span>(<span class="st">&quot;^ftp:/&quot;</span>)]);<br /><span class="co">// -&gt; true</span></code></pre>
+<h3 id="api-all">
+<code>all</code>
+</h3>
+
+<p>Determine whether all the elements of a list satisfy some predicate.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">all</span>(<span class="kw">function</span>(str) {<br />    <span class="kw">return</span> <span class="kw">str</span>.<span class="fu">match</span>(<span class="ot">/</span><span class="fl">^</span><span class="bn">[</span><span class="bn">A-Z][</span><span class="bn">a-z]</span><span class="fl">+$</span><span class="ot">/</span>);<br />}, [<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;three&quot;</span>]);<br /><span class="co">// -&gt; false</span></code></pre>
+<h3 id="api-none">
+<code>none</code>
+</h3>
+
+<p>Check that no element of a list satisfies a predicate.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">none</span>(<span class="kw">function</span>(c) {<br />    <span class="kw">return</span> c === <span class="kw">Math</span>.<span class="fu">PI</span>;<br />}, [<span class="dv">1</span>, <span class="dv">0</span>, -<span class="dv">1</span>, <span class="kw">Math</span>.<span class="fu">LN2</span>, <span class="kw">Math</span>.<span class="fu">E</span>]);<br /><span class="co">// -&gt; true</span></code></pre>
+<h3 id="api-sum">
+<code>sum</code>
+</h3>
+
+<p>Adds the elements of a numeric list together.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">sum</span>([]);<br /><span class="co">// -&gt; 0</span><br /><span class="kw">Udon</span>.<span class="fu">sum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]);<br /><span class="co">// -&gt; 10</span></code></pre>
+<h3 id="api-product">
+<code>product</code>
+</h3>
+
+<p>Multiplies the elements of a numeric list together.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">product</span>([]);<br /><span class="co">// -&gt; 1</span><br /><span class="kw">Udon</span>.<span class="fu">sum</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]);<br /><span class="co">// -&gt; 24</span></code></pre>
+<h3 id="api-elem">
+<code>elem</code>
+</h3>
+
+<p>Returns <code>true</code> if the given element is in the array, <code>false</code> otherwise.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">elem</span>(<span class="dv">2</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]) === <span class="kw">true</span>;<br /><br /><span class="kw">Udon</span>.<span class="fu">elem</span>(<span class="dv">4</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]) === <span class="kw">false</span>;</code></pre>
+<h3 id="api-notElem">
+<code>notElem</code>
+</h3>
+
+<p>Returns <code>false</code> if the given element is in the array, and <code>true</code> if it is not.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">notElem</span>(<span class="ch">'Z'</span>, [<span class="ch">'a'</span>, <span class="ch">'b'</span>, <span class="ch">'c'</span>]) === <span class="kw">true</span>;<br /><br /><span class="kw">Udon</span>.<span class="fu">notElem</span>(<span class="ch">'Z'</span>, [<span class="ch">'X'</span>, <span class="ch">'Y'</span>, <span class="ch">'Z'</span>]) === <span class="kw">false</span>;</code></pre>
+<h3 id="api-partition">
+<code>partition</code>
+</h3>
+
+<p>Separates a list into lists of those elements which do and do not satisfy some predicate.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">partition</span>(<span class="kw">function</span>(n) {<br />    <span class="kw">return</span> n &lt; <span class="dv">5</span>;<br />}, [<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">21</span>,<span class="dv">2</span>]);<br /><span class="co">// -&gt; [[4,3,2], [7,9,21]]</span></code></pre>
+<h3 id="api-unfoldr">
+<code>unfoldr</code>
+</h3>
+
+<p>Builds a list by repeatedly applying a function to a seed value. The function should return a pair of values: the first is an element to append to the list under construction, while the second is the seed value to pass to the next function call. The function must return <code>null</code> when it’s done, at which point <code>unfoldr</code> will return the constructed list.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> randomInts = <span class="kw">function</span>(<span class="kw">ceil</span>, n) {<br />    <span class="kw">return</span> <span class="kw">Udon</span>.<span class="fu">unfoldr</span>(<span class="kw">function</span>(i) {<br />        <span class="kw">return</span> i &lt; <span class="dv">1</span> ? <span class="dt">null </span>: [<span class="kw">Math</span>.<span class="fu">floor</span>(<span class="kw">Math</span>.<span class="fu">random</span>() * <span class="kw">ceil</span>), i - <span class="dv">1</span>];<br />    }, n);<br />};<br /><br />randomInts(<span class="dv">5</span>, <span class="dv">4</span>); <span class="co">// -&gt; [5,1,4,5] e.g.</span></code></pre>
+<h3 id="api-zip">
+<code>zip</code>
+</h3>
+
+<p>Transforms a pair of lists into a list of pairs. If the lists are of differing lengths, any elements left over after each element in the shorter list has been paired up with one from the longer list will be discarded.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">zip</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>]); <span class="co">// -&gt; [[1, &quot;a&quot;], [2, &quot;b&quot;], [3, &quot;c&quot;]]</span></code></pre>
+<h3 id="api-zipwith">
+<code>zipWith</code>
+</h3>
+
+<p>The <code>zipWith</code> function is a generalisation of <code>zip</code>: it returns the result of applying a function to each pair of elements from two lists.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Udon</span>.<span class="fu">zipWith</span>(<span class="kw">function</span>(a, b) {<br />    <span class="kw">return</span> a * b;<br />}, [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]);<br /><span class="co">// -&gt; [4,10,18]</span></code></pre>
+    </div>
+    
+    <p id="footer">
+        Udon is developed by <a href="http://extralogical.net/">Benedict
+        Eastaugh</a> and released under the BSD license.
+    </p>
+    
+</div></body></html>

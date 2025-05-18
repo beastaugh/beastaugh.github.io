@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Firmin, a JavaScript animation library using CSS transforms and transitions</title>
+    <link rel="stylesheet" type="text/css" href="./css/docs.css">
+    
+<!--tracking-->
+</head><body>
+    <header id="header">
+        <h1 id="title" class="wrapper"><a href="./">Firmin</a></h1>
+        
+        <p id="subtitle" class="wrapper">
+            A JavaScript animation library using CSS
+            transforms and transitions
+        </p>
+    </header>
+    
+    <div id="main" class="wrapper">
+        <nav id="toc">
+            <h2>Contents</h2>
+            
+            <ul>
+                <li>
+                    <p><a href="./">Documentation</a></p>
+                    <ul>
+                        <li><a href="./#downloads">Downloads</a></li>
+                        <li><a href="./#using-firmin">Using Firmin</a></li>
+                        <li><a href="./#relative-transforms">Relative transforms</a></li>
+                        <li><a href="./#operation-order">Operation order</a></li>
+                        <li><a href="./#supported-platforms">Supported platforms</a></li>
+                        <li><a href="./#transition-properties">Transition properties</a></li>
+                        <li><a href="./#units">Units</a></li>
+                        <li><a href="./#axes">Axes</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><a href="./api.html">API reference</a></p>
+                    <ul>
+                        <li><a href="./api.html#api-animate">The <code>animate</code> function</a></li>
+                        <li><a href="./api.html#translation-functions">Translation functions</a></li>
+                        <li><a href="./api.html#scaling-functions">Scaling functions</a></li>
+                        <li><a href="./api.html#rotation-functions">Rotation functions</a></li>
+                        <li><a href="./api.html#skew-functions">Skew functions</a></li>
+                        <li><a href="./api.html#matrix-functions">Matrix functions</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="./changelog.html">Development history</a></li>
+                <li><a href="./downloads.html">Release archive</a></li>
+            </ul>
+        </nav>
+        
+        <div id="content">
+            <p><strong>Firmin</strong> is a JavaScript animation library that uses CSS transforms and transitions to create smooth, hardware-accelerated animations.</p>
+<p>The project <a href="https://github.com/beastaugh/firmin">resides on GitHub</a>. You can report bugs and request features on <a href="https://github.com/beastaugh/firmin/issues">the issue tracker</a>. To see the project development history, take a look at <a href="./changelog.html">the changelog</a>.</p>
+<h2 id="downloads">Downloads</h2>
+<p>The latest release of Firmin is version <strong>1.0.0</strong>.</p>
+<ul>
+<li><a href="./downloads/firmin-1.0.0.js">Development version</a></li>
+<li><a href="./downloads/firmin-1.0.0-min.js">Production version</a> <small>8.3kb packed, 2.4kb gzipped</small></li>
+</ul>
+<p>Older versions are available from <a href="./downloads.html">the release archive</a>.</p>
+<h2 id="using-firmin">Using Firmin</h2>
+<p>Firmin’s API is not large, and mainly consists of convenience methods which make performing particular transforms easier. All of these methods are based on two core operations: the <code>animate</code> function and the <code>animate</code> method.</p>
+<p>The <code>animate</code> function takes three arguments: the element to be animated; a description of the animation to be run; and the duration of the animation. Durations can be given as a string ending in <code>s</code> (meaning a time in seconds) or <code>ms</code> (meaning milliseconds). They can also be given as plain numbers, in which case they are assumed to denote a time in seconds.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">var</span> box = <span class="kw">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;box&quot;</span>);<br /><br /><span class="kw">Firmin</span>.<span class="fu">animate</span>(box, {<br />    <span class="dt">skew</span>: {<br />        <span class="dt">x</span>: <span class="st">&quot;45deg&quot;</span>,<br />        <span class="dt">y</span>: <span class="st">&quot;30deg&quot;</span><br />    }<br />}, <span class="st">&quot;2.1s&quot;</span>);</code></pre>
+<p>It’s worth mentioning that any Firmin animation without a specified duration will be executed instantaneously—that is, the element will transition from its initial state to its final state with no visible intermediate states.</p>
+<p>The <code>animate</code> function returns an object with a complementary <code>animate</code> method. This method takes two arguments, an animation description and a duration, and will be applied to the same element (in other words, the method’s interface is the same as the function’s, just without the element parameter). This allows animations to be chained, applying transformations sequentially.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(box, {<span class="dt">translateX</span>: <span class="st">&quot;200px&quot;</span>}, <span class="st">&quot;1.6s&quot;</span>)<br />      .<span class="fu">animate</span>({<span class="dt">translateY</span>: <span class="st">&quot;100px&quot;</span>}, <span class="st">&quot;0.8s&quot;</span>);</code></pre>
+<p>There are a number of shortcut methods with the same names as the CSS transform functions. These provide a convenient way to perform single transformations without passing a verbose description to <code>animate</code>. Detailed documentation can be found in the <a href="./api.html">reference</a>. All of Firmin’s objects and methods fall under the <code>Firmin</code> namespace.</p>
+<h3 id="transform-origins">Transform origins</h3>
+<p>Aside from the transforms themselves, there is a further transform-related property which can be given in an animation description: the <code>origin</code> from which the transform will be performed. This should be supplied as an object with <code>x</code> and <code>y</code> properties (both CSS lengths).</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(box, {<br />    <span class="dt">rotate</span>: <span class="st">&quot;1.5rad&quot;</span>,<br />    <span class="dt">origin</span>: {<span class="dt">x</span>: <span class="st">&quot;10%&quot;</span>, <span class="dt">y</span>: <span class="dv">0</span>}<br />}, <span class="st">&quot;400ms&quot;</span>);</code></pre>
+<p>CSS transitions will also animate other properties, not merely transforms. For example, one could animate the opacity, background colour or height of an element. CSS property names are given in camelCase as is usual when modifying them with JavaScript.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(box, {<br />    <span class="dt">opacity</span>:         <span class="fl">0.8</span>,<br />    <span class="dt">height</span>:          <span class="st">&quot;200px&quot;</span>,<br />    <span class="dt">backgroundColor</span>: <span class="st">&quot;#000&quot;</span><br />}, <span class="fl">0.5</span>);</code></pre>
+<h2 id="relative-transforms">Relative transforms</h2>
+<p>Every animation function in Firmin has a complementary <em>relative</em> version; these can be used simply by appending an uppercase <code>R</code> to the function name, e.g. <code>Firmin.animateR</code> or <code>Firmin.translateXR</code>.</p>
+<p>When using a relative animation, any transform functions called will use the element’s current transformation matrix as a basis for the new transformation being generated, rather than the identity or origin matrix.</p>
+<p>For example, if one wanted to move an element 100 pixels to the right, and then move it 200 pixels up, then using Firmin’s normal, absolute animation functions one would write this:</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">translateX</span>(el, <span class="dv">100</span>).<span class="fu">translate</span>(el, {<span class="dt">x</span>: <span class="dv">100</span>, <span class="dt">y</span>: -<span class="dv">200</span>});</code></pre>
+<p>In many contexts, this can be expressed more naturally using a relative transformation: move the element 100 pixels to the right, and then move it 200 pixels up.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">translateX</span>(el, <span class="dv">100</span>).<span class="fu">translateYR</span>(el, -<span class="dv">200</span>);</code></pre>
+<p>Relative animations can be used at any time; Firmin maintains an internal list of previous animations which can be referred to when necessary, so one can call a series of absolute transforms and then a relative transform, or vice versa.</p>
+<p>This internal state is encapsulated in the <code>Animated</code> objects returned by all transform functions and methods. This is similar to the way other libraries which offer chaining APIs (like jQuery) work. To make what’s going on here clearer, let’s replace the chains of method calls used above with a more obviously stateful assignment and sequence of method calls.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="co">// Store a reference to the Animated object encapsulating</span><br /><span class="co">// the element's transformation state.</span><br /><span class="kw">var</span> animated = <span class="kw">Firmin</span>.<span class="fu">rotate</span>(el, <span class="dv">90</span>);<br /><br /><span class="co">// Call an animation method on that object.</span><br /><span class="kw">animated</span>.<span class="fu">skewX</span>(<span class="dv">30</span>);<br /><br /><span class="co">// Call a relative transform on that object; the final transformation</span><br /><span class="co">// state will include a rotation through 120 degrees, not 30.</span><br /><span class="kw">animated</span>.<span class="fu">rotateR</span>(<span class="dv">30</span>);</code></pre>
+<p>Transform states are stored in these <code>Animated</code> instances, rather than read from the DOM. Because of this, to perform relative transforms on an element a reference to the relevant object must be kept, whether through a variable or a sequence of method calls.</p>
+<h2 id="operation-order">Operation order</h2>
+<p><a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix multiplication</a> for non-<a href="http://en.wikipedia.org/wiki/Diagonal_matrix">diagonal</a> square matrices is not in general <a href="http://en.wikipedia.org/wiki/Commutativity">commutative</a>, so the order in which transforms are applied will affect the final state of the transform. Consider this CSS declaration:</p>
+<pre class="sourceCode"><code class="sourceCode CSS"><span class="fl">#an-element</span> <span class="kw">{</span><br />    <span class="kw">transform</span><span class="kw">:</span> skew(<span class="dt">15deg</span>, <span class="dt">30deg</span>) rotate(<span class="dt">45deg</span>)<span class="kw">;</span><br /><span class="kw">}</span></code></pre>
+<p>This is <em>not</em> equivalent to the following declaration:</p>
+<pre class="sourceCode"><code class="sourceCode CSS"><span class="fl">#an-element</span> <span class="kw">{</span><br />    <span class="kw">transform</span><span class="kw">:</span> rotate(<span class="dt">45deg</span>) skew(<span class="dt">15deg</span>, <span class="dt">30deg</span>)<span class="kw">;</span><br /><span class="kw">}</span></code></pre>
+<p>Firmin will respect the order of operations specified in an animation description, so one can write Firmin code that will produce the same outcome as the first CSS declaration above.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(<span class="kw">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;an-element&quot;</span>), {<br />    <span class="dt">skew</span>:   {<span class="dt">x</span>: <span class="st">&quot;15deg&quot;</span>, <span class="dt">y</span>: <span class="st">&quot;30deg&quot;</span>},<br />    <span class="dt">rotate</span>: <span class="st">&quot;45deg&quot;</span><br />});</code></pre>
+<p>One could also use the relative transform functions to generate the same final transformation as the second example CSS declaration.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">rotate</span>(<span class="kw">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;an-element&quot;</span>), <span class="st">&quot;45deg&quot;</span>)<br />      .<span class="fu">skewR</span>({<span class="dt">x</span>: <span class="st">&quot;15deg&quot;</span>, <span class="dt">y</span>: <span class="st">&quot;30deg&quot;</span>});</code></pre>
+<p>One caveat is necessary. Firmin is able to respect the order of operations specified in an animation description only because most widely-used JavaScript interpreters iterate over object properties (using a <code>for...in</code> loop) in the order that they those properties are declared, despite the fact that the JavaScript specification states that “The mechanics and order of enumerating the properties is not specified.”</p>
+<h2 id="supported-platforms">Supported platforms</h2>
+<p>Currently, the only supported platforms are those that use a recent version of the WebKit engine: <em>Safari 4</em> and <em>5</em>, <em>Mobile Safari</em> (i.e. iPhone and iPad) and <em>Google Chrome</em>. While CSS transforms and transitions are available for other browsers such as Opera 11 and Firefox 4, their implementations are less than complete. The CSS transforms and transitions API is experimental, and support for it varies between browsers. In the future, I hope to make Firmin compatible with more browsers.</p>
+<h3 id="hardware-acceleration">Hardware acceleration</h3>
+<p>One advantage of combining CSS transforms and transitions is that together they provide hardware-accelerated animation on WebKit-based browsers such as Safari on the Mac and Mobile Safari on the iPhone. Transitions which change the <code>opacity</code> property are also hardware accelerated on these platforms.</p>
+<h2 id="transition-properties">Transition properties</h2>
+<p>The description object passed to the <code>animate</code> function allows for the customisation of the transition. The properties that can be used to do this are:</p>
+<ul>
+<li><code>properties</code></li>
+<li><code>timingFunction</code></li>
+<li><code>duration</code></li>
+<li><code>delay</code></li>
+</ul>
+<p>Here’s an example using all of them.</p>
+<pre class="sourceCode"><code class="sourceCode JavaScript"><span class="kw">Firmin</span>.<span class="fu">animate</span>(<span class="kw">document</span>.<span class="fu">getElementById</span>(<span class="st">&quot;an-element&quot;</span>), {<br />    <span class="dt">backgroundColor</span>: <span class="st">&quot;#C4DDDA&quot;</span><br />    <span class="dt">color</span>:           <span class="st">&quot;#142367&quot;</span>,<br />    <span class="dt">opacity</span>:         <span class="fl">0.75</span>,<br /><br />    <span class="dt">properties</span>:      [<span class="st">&quot;opacity&quot;</span>, <span class="st">&quot;color&quot;</span>],<br />    <span class="dt">timingFunction</span>:  <span class="st">&quot;ease-out&quot;</span>,<br />    <span class="dt">duration</span>:        <span class="st">&quot;2s&quot;</span>,<br />    <span class="dt">delay</span>:           <span class="st">&quot;1s&quot;</span><br />});</code></pre>
+<h3 id="properties"><code>properties</code></h3>
+<p>This allows for the filtering of properties which the transition will be applied to. It defaults to <code>&quot;all&quot;</code> and can be set to the string <code>&quot;none&quot;</code> or an array of CSS property names. It’s described in detail in the CSS Transitions Module specification <a href="http://www.w3.org/TR/css3-transitions/#the-transition-property-property-">section 2.1</a>.</p>
+<h3 id="timingfunction"><code>timingFunction</code></h3>
+<p>This allows for control over how intermediate values used during a transition will be calculated. It accepts the name of a timing function as a string, or an array of numbers to be passed to the <code>cubic-bezier</code> function. There are five timing functions defined in the spec: <code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code> and <code>ease-in-out</code>. The default is <code>ease</code>. See <a href="http://www.w3.org/TR/css3-transitions/#transition-timing-function_tag">section 2.3</a> of the CSS Transitions Module specification for details.</p>
+<h3 id="duration"><code>duration</code></h3>
+<p>The time taken by the transition. It can be specified in either seconds (<code>&quot;1.5s&quot;</code>) or milliseconds (<code>&quot;300ms&quot;</code>). If a number is given, rather than a string, it will be interpreted as a value in seconds. Negative values are interpreted as <code>0</code>, i.e. executing immediately.</p>
+<h3 id="delay"><code>delay</code></h3>
+<p>This accepts a time in the same way as <code>duration</code>, and specifies an interval to delay the execution of the transition by. Negative values will result in the transition executing immediately, but will begin part-way through the play cycle. This is explained further in <a href="http://www.w3.org/TR/css3-transitions/#the-transition-delay-property-">section 2.4</a> of the specification.</p>
+<h2 id="units">Units</h2>
+<p>Most CSS properties, including transform functions and transition durations, have a magnitude and a unit. Angles are given in degrees, or radians; lengths in pixels or ems; times in seconds or milliseconds. In order to be as flexible as possible, Firmin accepts (with a couple of restrictions) the same CSS datatype values as a stylesheet. Keywords are not currently accepted as arguments to transform functions.</p>
+<h3 id="angles">Angles</h3>
+<p>Angles can be given as strings in <em>radians</em> (e.g. <code>&quot;2rad&quot;</code>), <em>grads</em> (e.g. <code>&quot;1grad&quot;</code>), <em>turns</em> (e.g. <code>&quot;0.5turn&quot;</code>) and <em>degrees</em> (e.g. <code>&quot;45deg&quot;</code>). These correspond exactly to the <a href="http://www.w3.org/TR/css3-values/#angles">CSS angle type</a>. The default is degrees, so if you provide a number as an angle argument, it is assumed to be in degrees.</p>
+<h3 id="lengths">Lengths</h3>
+<p>Because lengths in CSS are generally relative to the current browser and operating system environment, Firmin only accepts <em>pixel</em> lengths, e.g. <code>&quot;340px&quot;</code> or <code>340</code>.</p>
+<h3 id="times">Times</h3>
+<p>Times can be given as strings in <em>seconds</em> (e.g. <code>&quot;2s&quot;</code>) or <em>milliseconds</em> (e.g. <code>&quot;300ms&quot;</code>). The default is seconds, so if you provide a numeric argument, Firmin will assume it is in seconds.</p>
+<h2 id="axes">Axes</h2>
+<p>A number of transform functions modify the state of an element relative to a particular axis. For example, <code>translateX</code> will move the element along the horizontal (<em>X</em>) axis, while <code>scaleY</code> scales the element vertically (along the <em>Y</em> axis). The <em>Z</em> axis can be thought of as going into or coming out of the screen.</p>
+<p>As well as the <code>translate</code> function, <code>scale</code> and <code>rotate</code> both have <em>X</em>, <em>Y</em> and <em>Z</em> versions, while <code>skew</code> only has <em>X</em> and <em>Y</em> variants (<code>matrix</code> always operates on all three axes, and so has no axis-specific functions).</p>
+        </div>
+    </div>
+    
+    <p id="footer" class="wrapper">
+        Firmin is developed by <a href="http://extralogical.net/">Benedict
+        Eastaugh</a> and released under the BSD license.
+    </p>
+<body></html>

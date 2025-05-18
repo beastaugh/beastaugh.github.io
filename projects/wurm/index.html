@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    
+    <title>wurm | Universal Register Machine</title>
+    
+    <link rel="stylesheet" href="./urmsimulator.css">
+    
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
+    
+    <script type="text/javascript" src="./jquery-3.7.1.slim.js"></script>
+    <script type="text/javascript" src="./urmsimulator.js"></script>
+    <script type="text/javascript" src="./parser.js"></script>
+    <script type="text/javascript" src="./ui.js"></script>
+</head><body>
+
+<header>
+    <h1>wurm</h1>
+    <p class="tagline">Universal Register Machine</p>
+</header>
+
+<div class="no-js-notice">
+    <p>
+        You do not appear to have JavaScript enabled. This URM simulator runs
+        in the browser page using JavaScript, so if you would like to use it,
+        please enable JavaScript in your browser and refresh this page.
+    </p>
+</div>
+
+<section>
+    <form class="urm-program-input">
+        <p class="input-example">
+            <input type="button" name="urm-example-0" id="urm-example-0" value="Example program">
+        </p>
+        
+        <div class="input-program">
+            <p><label for="urm-program-0">Enter your URM program:</label></p>
+            
+            <textarea name="urm-program-0" id="urm-program-0" rows="20" cols="60"></textarea>
+        </div>
+        
+        <div class="input-registers">
+            <label for="urm-registers-0">Initial register values:</label>
+            <input type="text" name="urm-registers-0" id="urm-registers-0"
+                   value="">
+        </div>
+        
+        <div>
+            <p>
+                <input type="radio" name="urm-printsteps-0" id="urm-printsteps-no-0" value="no">
+                <label for="urm-printsteps-no-0">Only display the final register values</label>
+            </p>
+            <p>
+                <input type="radio" name="urm-printsteps-0" id="urm-printsteps-yes-0" value="yes" checked>
+                <label for="urm-printsteps-yes-0">Display intermediate register values</label>
+            </p>
+        </div>
+        </p>
+        
+        <p>
+            <input type="submit" name="urm-run-0" value="Run program">
+            <!-- &nbsp;&nbsp;
+            <input type="submit" name="urm-next-0" id="urm-next-0" value="Step forward">
+            &nbsp;&nbsp;
+            <input type="submit" name="urm-prev-0" id="urm-prev-0" value="Step back"> -->
+            &nbsp;&nbsp;
+            <input type="button" name="urm-reset-0" id="urm-reset-0" value="Clear">
+        </p>
+        
+        <div class="output">
+            <h3>Output</h3>
+            
+            <p>Run the program to generate output.</p>
+        </div>
+    </form>
+</section>
+
+<footer>
+    <p><em></em></p>
+</footer>
+
+</body></html>

@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Extralogical: All articles</title>
+    <link href="http://extralogical.net/blog.atom" rel="self" />
+    <link href="http://extralogical.net" />
+    <id>http://extralogical.net/blog.atom</id>
+    <author>
+        <name>Benedict Eastaugh</name>
+        <email>benedict@eastaugh.net</email>
+    </author>
+    <updated>2012-05-22T00:00:00Z</updated>
+    <entry>
+    <title>Reverse mathematics, constructivism and justification</title>
+    <link href="http://extralogical.net/blog/2012-05-22-reverse-maths-constructivism-justification.html" />
+    <id>http://extralogical.net/blog/2012-05-22-reverse-maths-constructivism-justification.html</id>
+    <published>2012-05-22T00:00:00Z</published>
+    <updated>2012-05-22T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>In a <a href="/files/comprm-slides.pdf">recent talk</a> I argued that the computational reverse mathematics suggested by Richard Shore in his 2010 paper, ‘<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.191.983">Reverse mathematics: the playground of logic</a>’, was not suitable for the job of analysing which theorems of ordinary mathematics are assertible by proponents of foundational systems such as predicativism or finitistic reductionism. This is because the relation of <em>computable entailment</em> employed by Shore doesn’t preserve the justificatory structure of those programmes. For example, there are statements that are computably entailed by <span class="math inline">WKL<sub>0</sub></span>, a finitistically reducible system, which are not themselves finitistically reducible.</p>
+<p>There is an obvious way in which this problem is shared by classical <a href="/articles/reverse-maths-intro.html">reverse mathematics</a>, and that is its relationship to <a href="http://plato.stanford.edu/entries/mathematics-constructive/">constructivism</a>. Constructivists reject unrestricted use of the law of excluded middle, but reverse mathematics is developed within classical logic and as such proofs relying on the law of the excluded middle are commonplace. Consequently there will be reverse mathematical theorems that cannot be countenanced by a constructivist since they have no constructive proof.</p>
+<p>Any attempt to convince a committed constructivist that certain parts of mathematics are beyond the reach of her axioms must employ principles that are themselves constructively acceptable. After all, the point here is to <em>analyse</em> foundational programmes—including varieties of constructivism—and not to rule them out before we even begin. The problem is the entailment relation: it’s plain that we can re-run the argument given in §3 of <a href="/files/comprm-slides.pdf">my talk</a>, swapping out computable entailment for classical entailment, and classical proof for constructive proof.</p>
+<p>Preserving justification is a key property for any entailment relation: if we are justified in accepting the antecedent, then we are also justified in accepting the consequent. But classical entailment does not, by constructivist standards, preserve justification. Considering just one case, a proof of <span class="math inline"><em>φ</em> ∨ <em>ψ</em></span> does not in all cases constitute a proof of <span class="math inline"><em>φ</em></span> or a proof of <span class="math inline"><em>ψ</em></span>. The constructivist is therefore entitled, by her own lights, to ignore classical results demonstrating the limits of her axiom system.</p>
+<p>This points to a tension within reverse mathematics. On the one hand there is an obvious and understandable desire to prove all of the results one is able to, and explore precisely which theorems of ordinary mathematics (ordinary mathematics itself being strongly rooted in classical logic) can be shown to be equivalent to one of the major subsystems of second order arithmetic. On the other, as one bakes stronger assumptions into one’s analytical framework one becomes unable to faithfully analyse weaker foundational systems such as constructivism.</p>]]></summary>
+</entry>
+<entry>
+    <title>Learning mathematical philosophy</title>
+    <link href="http://extralogical.net/blog/2012-03-05-formal-methods-2012.html" />
+    <id>http://extralogical.net/blog/2012-03-05-formal-methods-2012.html</id>
+    <published>2012-03-05T00:00:00Z</published>
+    <updated>2012-11-14</updated>
+    <summary type="html"><![CDATA[<p>The Bristol <a href="http://eis.bris.ac.uk/~rp3959/Richard_Pettigrews_homepage/Formal_Methods.html">Formal Methods Seminar</a> is aimed at teaching new postgraduates some of the formal methods used in much of modern philosophy. During the first term we’ve concentrated on logic: thus far the sessions have covered introductory set theory, basic metatheorems of first order logic, and the incompleteness of arithmetic. Next up are modal and temporal logic, while after Easter the focus will shift to formal epistemology and decision theory.</p>
+<p>Many of the handouts from these seminars have now been made available on the Munich Center for Mathematical Philosophy’s website, in their section on <a href="http://www.mcmp.philosophie.uni-muenchen.de/students/math/index.html">learning mathematical philosophy</a>. In particular, they have my handout on the compactness and Löwenheim–Skolem theorems.</p>
+<p>Since the Formal Methods Seminar isn’t a full-on logic course, I didn’t have time to cover all of the material I would have liked to, and consequently the notes are somewhat incomplete. In particular the downwards Löwenheim–Skolem theorem is not proved, although of course the proof is available in any good logic textbook. I hope to correct this omission at some point, and if anyone has corrections or suggestions, please do <a href="mailto:benedict@eastaugh.net">email me</a>.</p>
+<h2 id="update-november-2012">Update, November 2012</h2>
+<p>During October, I taught this material again to a new set of Master’s students. Instead of proving the upwards direction of Löwenheim–Skolem I taught the more fundamental downwards direction as a simple application of the completeness theorem, albeit not in its full generality, which would have required more time and technical finesse than I could assume.</p>
+<p>The <a href="/files/compactness-lowenheim-skolem-2012.pdf">updated notes</a> include this proof and have been restructured somewhat, but otherwise they are largely the same as last year’s.</p>]]></summary>
+</entry>
+<entry>
+    <title>An introduction to reverse mathematics</title>
+    <link href="http://extralogical.net/blog/2012-03-02-reverse-maths-intro.html" />
+    <id>http://extralogical.net/blog/2012-03-02-reverse-maths-intro.html</id>
+    <published>2012-03-02T00:00:00Z</published>
+    <updated>2012-03-02T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>In December 2011 I gave a presentation on <a href="http://en.wikipedia.org/wiki/Reverse_mathematics">reverse mathematics</a> to the local logic seminar. Having neglected this site for so long, it seemed like a good idea to publish <a href="/files/rm-handout-2011.pdf">my handout</a> from the presentation here. Here’s a teaser:</p>
+<blockquote>
+<p>In ordinary mathematical practice, mathematicians prove theorems, reasoning from a fixed set of axioms to a logically derivable conclusion. The axioms in play are usually implicit: mathematicians are not generally in the habit of asserting at the beginning of their papers that they assume ZFC. Given a particular proof, we might reasonably ask which axioms were employed, making explicit the author’s assumptions.</p>
+<p>Now that we have a set of axioms <span class="math inline"><em>Γ</em></span> which are sufficient to prove some theorem <span class="math inline"><em>φ</em></span>, we could further inquire whether or not they are <em>necessary</em> to prove the theorem, or whether a strictly weaker set of axioms would suffice. To a first approximation, reverse mathematics is the programme of discovering precisely which axioms are both necessary and sufficient to prove any given theorem of ordinary mathematics.</p>
+<p>Expanding on this slightly, in reverse mathematics we calibrate the proof-theoretic strength of theorems of ordinary mathematics by proving equivalences between those theorems and systems of axioms in a hierarchy of known strength. This characterisation should provoke at least three immediate questions. Which hierarchy of systems? How do these equivalence proofs work? And just what is “ordinary mathematics”?</p>
+</blockquote>
+<p>For the answers to these questions, and many more, you can read my <a href="/files/rm-handout-2011.pdf">introduction to reverse mathematics</a>. If you notice any mistakes, please drop me a line via <a href="mailto:benedict@eastaugh.net">email</a> or <a href="http://twitter.com/extralogical">Twitter</a>.</p>
+<p>A note for the eagle-eyed: at one point I claim that an equivalence between <span class="math inline">ACA<sub>0</sub></span> and some statement <span class="math inline"><em>φ</em></span> would have to involve a theorem scheme, and thus cannot be formalised at the level of the object language. However, the latter does not strictly follow from the former, as <span class="math inline">ACA<sub>0</sub></span> is finitely axiomatisable. For more details on this, read Peter Smith’s <a href="http://www.logicmatters.net/2007/09/aca0-3-finite-axiomatizability/">handy little guide</a> to finitely axiomatising <span class="math inline">ACA<sub>0</sub></span>.</p>]]></summary>
+</entry>
+<entry>
+    <title>Developing arithmetic in Gödel's system T</title>
+    <link href="http://extralogical.net/blog/2011-04-11-arithmetic-godel-system-t.html" />
+    <id>http://extralogical.net/blog/2011-04-11-arithmetic-godel-system-t.html</id>
+    <published>2011-04-11T00:00:00Z</published>
+    <updated>2012-10-06</updated>
+    <summary type="html"><![CDATA[<p>This year I’ve been running a reading group on type theory. Our primary text is <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a> by Jean-Yves Girard, Yves Lafont and Paul Taylor. The focus of the book is the development of the typed λ-calculus, with a strong proof-theoretic slant, these two perspectives being unified by the <a href="http://en.wikipedia.org/wiki/Curry–Howard_correspondence">Curry-Howard correspondence</a>. It begins by exploring the connections between <a href="http://en.wikipedia.org/wiki/Intuitionistic_logic">intuitionistic logic</a> and the <a href="http://en.wikipedia.org/wiki/Simply_typed_lambda_calculus">simply typed lambda calculus</a>, and works up to a fairly in-depth study of <a href="http://en.wikipedia.org/wiki/System_F">System F</a>.</p>
+<p>One of the intermediate steps is the system <em>T</em>, originally developed by Kurt Gödel in his <a href="http://en.wikipedia.org/wiki/Dialectica_interpretation">Dialectica interpretation</a>, and reformulated by Tait in 1967. I won’t try to cover the history here—there are plenty of articles out there if you’re interested. (The names of the articles alluded to are given in the references at the end.)</p>
+<p>The modern formulation of <em>T</em> is as a typed λ-calculus with natural number and boolean types. In chapter 7 of <em>Proofs and Types</em>, Girard shows how the natural numbers can be represented in <em>T</em>, and provides a definition of addition based on the recursion operator <span class="math inline">R</span>. He goes on to say that</p>
+<blockquote>
+<p>Among easy exercises in this style, one can amuse oneself by defining multiplication, exponenential, predecessor <em>etc.</em></p>
+</blockquote>
+<p>So, let’s amuse ourselves! Thinking about these simple examples is helpful because it gives a working demonstration of how the recursion operator adds power back to the language which was lost when the restrictive type system was introduced.</p>
+<p>For example, the untyped λ-calculus allows one to use <a href="http://en.wikipedia.org/wiki/Church_encoding">Church encoding</a> to represent the natural numbers, but in the simply typed lambda calculus one is barred from forming the relevant terms by the requirement that every term be well-typed.</p>
+<p>During the reading group meeting where we discussed this chapter, we managed to assemble a working definition for multiplication, which I’ll present below along with the other arithmetical functions Girard suggests. However, before we get onto that, I’m going to briefly sketch how the type of natural numbers <span class="math inline">Nat</span> is defined in <em>T</em>; the introduction and elimination rules for terms of that type, on which everything else is built; and how an addition function can be defined in terms of those rules.</p>
+<p>A small niggle: Girard actually talks about an <em>integer type</em> <span class="math inline">Int</span>. When one examines the nature of the type it becomes clear that what’s intended is a natural number type, so I’m going to talk solely about natural numbers and call the type in question <span class="math inline">Nat</span>, not <span class="math inline">Int</span>.</p>
+<h2 id="natural-numbers-in-t">Natural numbers in <em>T</em></h2>
+<p>System <em>T</em> is a variant of the simply typed lambda calculus, so it has three sorts of rules: those stating which <em>types</em> exist; those stating which <em>terms</em> of those types can be formed; and reduction rules stating how some terms can be reduced to others. These are spelled out in §3.1 of <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a>, so if any of the following doesn’t make sense, I recommend checking that out (the book is freely available from the link above).</p>
+<p>For system <em>T</em>, there are also two constant types, <span class="math inline">Nat</span> and <span class="math inline">Bool</span>; here we shall only be concerned with <span class="math inline">Nat</span> so I shall omit the rules mentioning <span class="math inline">Bool</span>. The additional term formation rules for system <em>T</em> specify how one can introduce and eliminate terms of <span class="math inline">Nat</span> and <span class="math inline">Bool</span>. The introduction rules are:</p>
+<ul>
+<li><span class="math inline">O</span> is a (constant) term of type <span class="math inline">Nat</span>;</li>
+<li>If <span class="math inline"><em>t</em></span> is a term of <span class="math inline">Nat</span>, then <span class="math inline">S<em>t</em></span> is a term of type <span class="math inline">Nat</span>.</li>
+</ul>
+<p>These mirror their equivalents in Peano Arithmetic almost exactly—that is, they represent zero and the successor function. There is also the elimination rule for <span class="math inline">Nat</span>, which introduces the recursion operator <span class="math inline">R</span>:</p>
+<ul>
+<li>If <span class="math inline"><em>u</em></span>, <span class="math inline"><em>v</em></span>, <span class="math inline"><em>t</em></span> are of types respectively <span class="math inline"><em>U</em></span>, <span class="math inline"><em>U</em> → (Nat → <em>U</em>)</span> and <span class="math inline">Nat</span>, then <span class="math inline">R<em>u</em><em>v</em><em>t</em></span> is of type <span class="math inline"><em>U</em></span>.</li>
+</ul>
+<p>The recursion operator allows us to combine the introduction rules to give recursive definitions of arithmetic operations such as addition and multiplication in a form not too far removed from their counterparts in Peano Arithmetic. Its reduction rule is given by two cases:</p>
+<ul>
+<li><span class="math inline">R<em>u</em><em>v</em>O</span> reduces to <span class="math inline"><em>u</em></span>.</li>
+<li><span class="math inline">R<em>u</em><em>v</em>(S<em>x</em>)</span> reduces to <span class="math inline"><em>v</em>(R<em>u</em><em>v</em><em>x</em>)<em>x</em></span>.</li>
+</ul>
+<p>The first is the <em>base case</em>, which ensures that the recursion is well-founded. The second rule gives, for the recursive case, a way of eliminating an instance of the recursion operator. The term it reduces to looks more complex than the one we started with, but it’s clear that eventually we’re going to run out of successors and the reduction process will terminate (a proof of this is given in §7.2 of <em>Proofs and Types</em>).</p>
+<h2 id="addition">Addition</h2>
+<p>With the preamble out of the way, we’re finally ready to start defining the usual arithmetic functions within <em>T</em>. The easiest place to start is with the definition of addition.</p>
+<blockquote>
+<p><span class="math inline"><em>x</em> + 0 = <em>x</em></span></p>
+<p><span class="math inline"><em>x</em> + <em>S</em>(<em>y</em>) = <em>S</em>(<em>x</em> + <em>y</em>)</span></p>
+</blockquote>
+<p>There’s no recursion operator in sight in this definition, but of course there is recursion occurring. The first equation gives the base case, defining the result when the addition function is used to combine a number <span class="math inline"><em>x</em></span> with <span class="math inline">0</span>. The second equation defines the recursive case, giving the result when we add the successor of some number <span class="math inline"><em>y</em></span> to some number <span class="math inline"><em>x</em></span>. The recursion operator <span class="math inline">R</span> has three arguments, and the first two map to these cases: the value of the base case (here it would be <span class="math inline"><em>x</em></span>) and the function to apply in the recursive case (here, the successor function).</p>
+<p>With this in mind, we can formulate an addition function in <em>T</em> pretty straightforwardly. The variables bound by lambda abstractions have been given type annotations, just to make clear how the types of these terms relate to those specified in the introduction and elimination rules for terms of type <span class="math inline">Nat</span>. I shall omit these annotations from the definitions in the rest of the article.</p>
+<blockquote>
+<p><span class="math inline">add = <em>λ</em><em>x</em><sup>Nat</sup>.<em>λ</em><em>y</em><sup>Nat</sup>.R<em>x</em>(<em>λ</em><em>z</em><sup>Nat</sup>.<em>λ</em><em>w</em><sup>Nat</sup>.S<em>z</em>)<em>y</em></span></p>
+</blockquote>
+<p>The second term given to <span class="math inline">R</span> is just a double lambda abstraction over <span class="math inline">S<em>x</em></span>, representing a two-argument function; the second argument (the numbers accumulating on the right of the reduction) will always be thrown away. The type of the term must be, by the definition we gave earlier, <span class="math inline"><em>U</em> → (Nat → <em>U</em>)</span>. In this case we’re saying that the type <span class="math inline"><em>U</em></span> is in fact the constant type <span class="math inline">Nat</span>, so the term has a type of <span class="math inline">Nat → (Nat → Nat)</span>.</p>
+<p>I should note that there is no mechanism in <em>T</em> for giving names to definitions (i.e. let binding), so equations like the one given above should simply be seen as expressing abbreviations, not as expressions in the language of <em>T</em>, although the lambda term on the right hand side certainly is.</p>
+<h2 id="multiplication">Multiplication</h2>
+<p>Again, let’s begin with the definition of multiplication we find in Peano Arithmetic.</p>
+<blockquote>
+<p><span class="math inline"><em>x</em> ⋅ 0 = 0</span></p>
+<p><span class="math inline"><em>x</em> ⋅ <em>S</em>(<em>y</em>) = (<em>x</em> ⋅ <em>y</em>) + <em>x</em></span></p>
+</blockquote>
+<p>Here we can see that in the base case, when we combine <span class="math inline">0</span> with <span class="math inline"><em>x</em></span> the result is <span class="math inline">0</span>. In contrast, in the base case for addition when we combine <span class="math inline">0</span> with <span class="math inline"><em>x</em></span> the result is <span class="math inline"><em>x</em></span>. This is reflected in the following definition of multiplication in <em>T</em>, with <span class="math inline">O</span> as the base case, and <em>addition</em> as the operation applied in the successor case.</p>
+<blockquote>
+<p><span class="math inline">mult = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.(add)<em>x</em><em>z</em>)<em>y</em></span></p>
+</blockquote>
+<p>Expanding the definition of <span class="math inline">add</span> in <span class="math inline">mult</span> (with some trivial α-conversion and β-reduction), it’s easy to see the double recursion that we also see in the <span class="math inline">PA</span> definitions.</p>
+<blockquote>
+<p><span class="math inline">mult = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.R<em>x</em>(<em>λ</em><em>u</em>.<em>λ</em><em>v</em>.S<em>u</em>)<em>z</em>)<em>y</em></span></p>
+</blockquote>
+<h2 id="exponentiation">Exponentiation</h2>
+<p>Just as multiplication is built on addition, adding an extra layer of recursion, so exponentiation is built on multiplication. The <span class="math inline">PA</span> equations are</p>
+<blockquote>
+<p><span class="math inline"><em>x</em><sup>0</sup> = 1</span></p>
+<p><span class="math inline"><em>x</em><sup><em>S</em>(<em>y</em>)</sup> = <em>x</em><sup><em>y</em></sup> ⋅ <em>x</em></span></p>
+</blockquote>
+<p>Again, all we need to do to define this new function is state the base case (<span class="math inline">SO</span>, corresponding to the rule that any number raised to exponent 0 is 1) and the function to apply in the recursive case (multiplication).</p>
+<blockquote>
+<p><span class="math inline">exp = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RSO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.((mult)<em>x</em><em>z</em>))<em>y</em></span></p>
+</blockquote>
+<h2 id="predecessor">Predecessor</h2>
+<p>The predecessor function is given by the following equations.</p>
+<blockquote>
+<p><span class="math inline"><em>P</em><em>r</em><em>e</em><em>d</em>(0) = 0</span></p>
+<p><span class="math inline"><em>P</em><em>r</em><em>e</em><em>d</em>(<em>S</em>(<em>x</em>)) = <em>x</em></span></p>
+</blockquote>
+<p>Compared to the nested recursions given above, the definition of the predecessor function in <em>T</em> is strikingly simple.</p>
+<blockquote>
+<p><span class="math inline">pred = <em>λ</em><em>x</em>.RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)<em>x</em></span></p>
+</blockquote>
+<p>The insight which allows one to derive it is similarly simple. An application of the predecessor function to some successor (in the case of <span class="math inline">O</span> the predecessor will simply be <span class="math inline">O</span> too) will be of this form: <span class="math inline">RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)(S<em>x</em>)</span>. When we look at the reduced term after one reduction, we have something like <span class="math inline">(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)(RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)<em>x</em>)<em>x</em></span>.</p>
+<p>Ignore the new occurrence of the recursion operator; just consider it as another term. Instead, look at the whole formula as an application. Clearly, the first argument to the function on the left will always be discarded: the whole term will always reduce simply to <span class="math inline"><em>x</em></span>, the predecessor of <span class="math inline">S<em>x</em></span>, our initial argument.</p>
+<h2 id="references-further-reading">References &amp; further reading</h2>
+<ul>
+<li>Girard, Lafont and Taylor’s <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a> is the primary reference for this article.</li>
+<li>System <em>T</em> was first introduced by Kurt Gödel in his 1958 <em>Dialectia</em> article ‘Über eine bisher noch nicht benützte Erweiterung des finiten Standpunktes’, which is reproduced (with an English translation) in volume II of his <a href="http://ukcatalogue.oup.com/product/9780195147216.do"><em>Collected Works</em></a>, edited by Feferman et al.</li>
+<li>The more modern version of <em>T</em> which Girard et al. work from was first given by William Tait in his 1967 <a href="http://www.aslonline.org/journals-journal.html"><em>JSL</em></a> article, ‘Intensional interpretation of functionals of finite type I’.</li>
+<li>From a programming languages perspective, Benjamin Pierce provides a good introduction to the simply typed lambda calculus in chapter 9 of his book <a href="http://www.cis.upenn.edu/~bcpierce/tapl/"><em>Types and Programming Languages</em></a>.</li>
+<li>A more general introduction to the λ-calculus is Hindley and Seldin’s <a href="http://www.cambridge.org/gb/knowledge/isbn/item1175709/"><em>Lambda-Calculus and Combinators</em></a>, while Barendregt’s <a href="http://mathgate.info/cebrown/notes/barendregt.php"><em>The Lambda Calculus: Its Syntax and Semantics</em></a> is the definitive reference work in the field.</li>
+</ul>]]></summary>
+</entry>
+<entry>
+    <title>Firmin, a JavaScript animation library</title>
+    <link href="http://extralogical.net/blog/2011-04-04-firmin-javascript-animation.html" />
+    <id>http://extralogical.net/blog/2011-04-04-firmin-javascript-animation.html</id>
+    <published>2011-04-04T00:00:00Z</published>
+    <updated>2011-04-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><a href="/projects/firmin/">Firmin</a> is a JavaScript animation library that uses CSS transforms and transitions to create smooth, hardware-accelerated animations.</p>
+<p>Firmin is fundamentally very simple: all it does is parse descriptions of animations and then execute them by manipulating the <code>style</code> property of the animated element. Here’s an example: moving an element right 200 pixels and down 100 pixels in half a second, while rotating it clockwise through 45°.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">var</span> elem <span class="op">=</span> <span class="va">document</span>.<span class="at">getElementById</span>(<span class="st">&quot;an-element&quot;</span>)<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="va">Firmin</span>.<span class="at">animate</span>(elem<span class="op">,</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="dt">translate</span><span class="op">:</span> <span class="op">{</span><span class="dt">x</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">100</span><span class="op">},</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="dt">rotate</span><span class="op">:</span>    <span class="dv">45</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="op">},</span> <span class="fl">0.5</span>)<span class="op">;</span></span></code></pre></div>
+<p>Firmin was partly born out of a desire to write a lightweight, standalone animation library which didn’t rely on an existing DOM framework like <a href="http://jquery.com">jQuery</a> or <a href="http://developer.yahoo.com/yui/">YUI</a>. The current version is still missing a number of features and only works on a limited subset of modern browsers, but if you’re developing applications for WebKit-based browsers it’s ready to be used in anger.</p>
+<p>There’s a reasonably complete set of <a href="/projects/firmin/">documentation</a> available, which introduces the framework and provides a fairly comprehensive set of <a href="/projects/firmin/api.html">API docs</a>. If you just want to know how to use Firmin, that’s the place to go.</p>
+<p>For the remainder of this article I’m going to discuss using CSS transforms and transitions to create animations, explain some of the problems I’m trying to solve, and address a few of the issues I faced while developing Firmin. If you you like what you see (or think I’m missing a trick somewhere), please <a href="https://github.com/beastaugh/firmin">fork the project on GitHub</a> or just <a href="https://github.com/beastaugh/firmin/issues">report an issue</a>.</p>
+<h2 id="animating-the-browser">Animating the browser</h2>
+<p>Animation in HTML documents has always been the preserve of JavaScript, purely because there was no other way to accomplish it. The <a href="http://www.w3.org/TR/css3-transitions/">CSS Transitions Module</a> is an attempt to alter that state of affairs, by providing native animation primitives through CSS. One can write rules like the following to make an element animate when its <code>opacity</code> property changes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">.animated</span> {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">transition-property</span>: opacity<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">transition-duration</span>: <span class="dv">0.5</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>}</span></code></pre></div>
+<p>Since the animation will only run when the <code>opacity</code> property is changed, JavaScript will still usually be needed to initiate the transition, although there are some pseudo-class selectors like <code>:hover</code> which can trigger transitions.</p>
+<p>Furthermore, one has to write these rules in advance, and are few abstractions available to make such code as flexible as one might like. While it might work for small sites with limited functionality, this is not an approach likely to scale to larger endeavours.</p>
+<p>By modifying the DOM properties of the elements to be animated with JavaScript, we can combine the advantages of speed and simplicity offered by the CSS Transitions Module with the reusability and expressive power of a traditional animation framework.</p>
+<h2 id="creating-animations-with-css-transitions">Creating animations with CSS Transitions</h2>
+<p>Animation hasn’t tended to perform well in web browsers. This is partly because of how it’s had to be implemented, as a function which fires every hundredth of a second or so to change the state of the animated element to the next ‘frame’ of the animation. This is not easy for browser engines to optimise: a more promising approach would be built-in primitives for animation which could then be optimised at a lower level, closer to the hardware.</p>
+<p>This is what the CSS transitions API promises, and when used in concert with CSS transforms, a number of WebKit-based browsers (such as Safari on the Mac, and Mobile Safari on the iPhone and iPad) will actually hardware accelerate the animation. This results in noticeably smoother animations which don’t slow down other operations in the way that traditional animations do.</p>
+<p>The animation of transform properties can be hardware accelerated because modifying them doesn’t force a <a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/">reflow</a> of the page; the same is true of the <code>opacity</code> property, which is why these are the only properties whose animation can currently be hardware accelerated. I used this trick on the <a href="http://www.paulsmith.co.uk/">Paul Smith</a> homepage to improve the performance of a full-page fade in browsers which supported CSS transitions. We actually published the code in question under a BSD license, so you can have a look at the <a href="https://github.com/othermedia/edgecase/blob/master/source/edge-gallery.js#L191">source code</a> if you’re interested.</p>
+<p>Transitions are just CSS properties, which hands an immense amount of power directly to developers, who can start writing quite complex animation routines with barely any JavaScript. One example I saw recently was this <a href="http://hakim.se/inc/components/slideshow/">fantastic slideshow</a>, which basically works by changing the <code>className</code> of the slides. The minimal amount of code needed to get it off the ground is extremely impressive, and a great demonstration of some of the possibilities which this combination of transforms and transitions provides.</p>
+<p>There are four transition properties, which I’ll go through briefly before explaining how they can be used to create animations. All the details can be found in the W3C specification, <a href="http://www.w3.org/TR/css3-transitions/#transitions-">§2</a>. The first is the <code>transition-property</code> property, which specifies those animatable CSS properties of the DOM element in question which are to be animated.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">.animated1</span> {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="co">/* Only the opacity and background-color properties will be animated. */</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="kw">transition-property</span>: opacity<span class="op">,</span> background-color<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">.animated2</span> {</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="co">/* All of the element&#39;s animatable properties will be animated. */</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">transition-property</span>: <span class="dv">all</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>}</span></code></pre></div>
+<p>Then there are the <code>transition-duration</code> and <code>transition-delay</code> properties, which specify how long the animation should last, and how long to wait before starting it.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">.animated3</span> {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">/* Animations should last for 2 seconds. */</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">transition-duration</span>: <span class="dv">2</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>}</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">.animated4</span> {</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="co">/* Animations should begin after 147 milliseconds. */</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">transition-delay</span>: <span class="dv">147</span><span class="dt">ms</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>}</span></code></pre></div>
+<p>Finally, there’s the <code>transition-timing-function</code> property, which specifies a function describing the evolution of the animatable properties over time. In other words, they give the <em>rate of change</em> of the animatable properties. Some of them start slow and end fast; others are fast at the beginning and slow down towards the end. Timing functions are specified using <a href="http://en.wikipedia.org/wiki/Bézier_curve#Cubic_B.C3.A9zier_curves">cubic Bézier curves</a>: there are five named functions one can use (<code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code> and <code>ease-in-out</code>), as well as a <code>cubic-bezier</code> function that can be used to create one’s own timing functions by specifying four control points.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">.animated5</span> {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">/* The ease-in-out function starts slow, speeds up, then slows back down</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">       towards the end of the animation. */</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">transition-timing-function</span>: <span class="dv">ease-in-out</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="fu">.animated5</span> {</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="co">/* The timing function specified here is actually equivalent to the</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">       ease-in function. */</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="kw">transition-timing-function</span>: <span class="fu">cubic-bezier(</span><span class="dv">0.42</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1.0</span><span class="op">,</span> <span class="dv">1.0</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>}</span></code></pre></div>
+<p>Of course, the downside to writing all one’s animation code in CSS is that everything must be specified in advance: nothing can be calculated at runtime. Fortunately, there is a DOM interface to the way any element is styled: its <code>style</code> property. Manipulating this property is how all existing JavaScript animation frameworks work, and Firmin is no different. Let’s consider a simple example: making an element transparent (“fading it out”). Using Firmin, this is done as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1"></a><span class="va">Firmin</span>.<span class="at">animate</span>(elem<span class="op">,</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="dt">opacity</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="op">},</span> <span class="st">&quot;1s&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<p>All this does is give the element an opacity of 0, and set its <code>transitionDuration</code> property to <code>"1s"</code>. Let’s translate it into CSS to see how it would work there, assuming we gave the element in question the <code>fade-out</code> class at an appropriate moment.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">.fade-out</span> {</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">opacity</span>:             <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">transition-duration</span>: <span class="dv">1</span><span class="dt">s</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>}</span></code></pre></div>
+<p>I wrote at the beginning of this article that Firmin is fundamentally very simple, and here we can see just how simple. In the library there’s a method, <a href="https://github.com/beastaugh/firmin/blob/1.0.0/src/firmin.js#L815-830">Firmin.Animation#exec</a>, which takes the properties to be animated and the transition properties that will animate them, loops over them, and applies them to the relevant element. Since it’s so straightforward, I’m going to show the entire function source, with a few comments added to explain what’s going on.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1"></a><span class="va">Firmin</span>.<span class="va">Animation</span>.<span class="va">prototype</span>.<span class="at">exec</span> <span class="op">=</span> <span class="kw">function</span>(element) <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="co">// An instance of the Animation prototype represents a single animation:</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="co">// its style property carries any property, such as opacity, which is</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="co">// neither a transition nor a transform. It&#39;s aliased as the properties</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="co">// variable for convenience.</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">var</span> properties <span class="op">=</span> <span class="kw">this</span>.<span class="at">style</span><span class="op">,</span> property<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    </span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="co">// The properties object is modified by passing it to the transition and</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="co">// transform builder methods, which basically just translate the internal</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="co">// representations of those properties into something that can be copied</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="co">// onto the DOM element being animated.</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="cf">if</span> (<span class="kw">this</span>.<span class="at">transition</span>) properties <span class="op">=</span> <span class="kw">this</span>.<span class="va">transition</span>.<span class="at">build</span>(properties)<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="cf">if</span> (<span class="kw">this</span>.<span class="at">transform</span>)  properties <span class="op">=</span> <span class="kw">this</span>.<span class="va">transform</span>.<span class="at">build</span>(properties)<span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="co">// Then this loop simply adds each specified property on the element in</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="co">// question. This is, in the end, all that the execution of the animation</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="co">// consists of.</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="cf">for</span> (property <span class="kw">in</span> properties) <span class="op">{</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>        <span class="va">element</span>.<span class="at">style</span>[property] <span class="op">=</span> properties[property]<span class="op">;</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="op">}</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="op">};</span></span></code></pre></div>
+<p>I’m going to discuss CSS Transforms in more detail later on, so for now I’ll just mention that they modify the shape and position of elements, and the nature of this modification makes them well-suited to creating certain sorts of animations. In particular, they give the web developer an arsenal of effects that can be deployed to great effect in the creation of web applications which retain much of the feel and responsiveness of native applications on mobile devices, and as such also form a natural replacement for some Flash-based sites.</p>
+<p>One of the best things about <a href="http://ojay.othermedia.org/">Ojay</a> is the simplicity of executing actions sequentially: animate this element here, then hide it, then run this function, then do this other thing, and so on. Firmin lets you chain animations in much the same way, although it doesn’t have Ojay’s generality (in Ojay you can change the object which methods are applied to partway through a chain of method calls, and do all the other nifty things <a href="http://jsclass.jcoglan.com/methodchain.html">MethodChain</a> supports).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1"></a><span class="va">Firmin</span>.<span class="at">translateY</span>(elem<span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>      .<span class="at">rotate</span>(<span class="dv">45</span><span class="op">,</span> <span class="fl">0.75</span><span class="op">,</span> <span class="kw">function</span>(el) <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>          <span class="va">el</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="st">&quot;Something something&quot;</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>      <span class="op">}</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>      .<span class="at">animate</span>(<span class="op">{</span><span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">},</span> <span class="fl">0.5</span>)<span class="op">;</span></span></code></pre></div>
+<p>Two things are on show in this example: animation chaining, and callbacks. Implementing them was very simple, but they add a lot of power to the library. Animation chaining basically just involves building up a queue of animations with each method call, then firing them in order. For the gory details, have a look at <a href="https://github.com/beastaugh/firmin/blob/1.0.0/src/firmin.js">the source code</a>—it’s all commented pretty thoroughly.</p>
+<p>It’s worth mentioning that animations are run on a timer: every time an animation is run, the library calls <code>setTimeout</code> with a callback function that will run the next animation (if there is one) once the first animation finishes. Originally I added a listener to the animated element for the <code>transitionend</code> event (see <a href="http://www.w3.org/TR/css3-transitions/#transition-events-">§5</a> of the specification), but it’s rather patchily supported, and some people have reported bugs when using it, so in the end I went with a simple timeout.</p>
+<p>Every animation function and method that Firmin has accepts a callback function as an optional last argument, so you can run arbitrary code once an animation finishes. With this in mind, let’s run through the example above, this time with comments.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">// First, the element is moved 200 pixels down, the animation taking 1 second.</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="va">Firmin</span>.<span class="at">translateY</span>(elem<span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">1</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>      <span class="co">// Then it&#39;s rotated through 45 degrees, taking 0.75 seconds.</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>      .<span class="at">rotate</span>(<span class="dv">45</span><span class="op">,</span> <span class="fl">0.75</span><span class="op">,</span> <span class="kw">function</span>(el) <span class="op">{</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>          <span class="co">// Once that animation finishes, the content of the element is set to</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>          <span class="co">// an arbitrary string.</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>          <span class="va">el</span>.<span class="at">innerHTML</span> <span class="op">=</span> <span class="st">&quot;Something something&quot;</span><span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>      <span class="op">}</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a>      <span class="co">// Finally, it&#39;s faded to 10% opacity in 0.5 seconds.</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>      .<span class="at">animate</span>(<span class="op">{</span><span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">},</span> <span class="fl">0.5</span>)<span class="op">;</span></span></code></pre></div>
+<p>The important lesson here is that these actions are executed <em>sequentially</em>, each animation only being run once the previous one is complete.</p>
+<p>From everything discussed above, one might get the impression that transitions are great, and a natural replacement for existing JavaScript animation technology. I’m going to end this section with some reasons why this isn’t the case, at least not yet.</p>
+<p>The obvious point is that they’re not widely supported, and won’t supplant the current way of doing things until they are. This is fair enough, although I will say that if you know you don’t need to support older browsers—for instance, if you’re writing web applications targeted at iOS devices—then this won’t be a problem.</p>
+<p>There are also some real technical limitations to transitions as an animation mechanism, at least at present. Because the tick-by-tick modification of the DOM elements involved is removed from the animation framework (since it’s being done by the browser, based on the transition properties given to the element), certain sorts of fine-grained control of animations are no longer possible.</p>
+<p>Firstly, one can’t create a completely arbitrary timing function: only those specifiable by four control points as a cubic Bézier curve are allowed. Relatedly, one can’t stop an animation halfway through. Doing this would require direct access to the intermediate states of the animation—something the transitions API doesn’t give one.</p>
+<p>In order to add something like <a href="http://api.jquery.com/category/effects/">jQuery’s <code>stop</code> method</a>, one would have to write a function to calculate all those intermediate stages, which would need to produce exactly the same output as the browser’s. Apart from being an unnecessary headache, it’s the sort of low-level work that misses the point of <em>having</em> these new animation primitives in the first place.</p>
+<h2 id="working-with-css-transforms">Working with CSS Transforms</h2>
+<p>Complementing the Transitions module are the CSS <a href="http://www.w3.org/TR/css3-2d-transforms/">2D</a> and <a href="http://www.w3.org/TR/css3-3d-transforms/">3D</a> Transforms Modules. Until now the facilities available to transform the position and shape of an element have been limited to changing the values of various aspects of the box model: its height, width, margins, padding, and position relative to some container.</p>
+<p>The Transforms modules offer a range of pure CSS functions to rotate, skew, scale and translate DOM elements, based on the extensive work done on the SVG specification. Scaling an element to twice its initial width and rotating it 45° around its top left-hand corner is simple:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode CSS"><code class="sourceCode css"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">.transformed</span> {</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="kw">transform</span>:        scaleX(<span class="dv">2</span>) <span class="fu">rotate(</span><span class="dv">45</span><span class="dt">deg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">transform-origin</span>: <span class="dv">0</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>}</span></code></pre></div>
+<p>Using a transform function creates a new local <a href="http://www.w3.org/TR/SVG/coords.html">coordinate system</a> for a given element and its descendants. All transform functions (rotate, skew, translate, scale etc.) are defined in terms of a <a href="http://www.mathamazement.com/Lessons/Pre-Calculus/08_Matrices-and-Determinants/coordinate-transformation-matrices.html">transformation matrix</a>. Firmin translates each use of these API-level transform functions into an equivalent matrix transformation and then concatenates them to determine the final value. By performing these operations internally rather than deferring them to the browser, it is possible to introduce stateful transforms, where each new state of an element is based on its current state.</p>
+<p>Both the CSS Transforms specifications include a requirement to expose an implementation of an object following the <a href="http://www.w3.org/TR/css3-3d-transforms/#cssmatrix-interface">CSSMatrix interface</a>. This is important for anyone wanting to write an animation library like Firmin, since it provides a way of accomplishing two key tasks. Firstly, it exposes the internal representation of the transformation state of a DOM element. This enables library authors to deal with all transforms in a simple, unified way rather than having to do messy hacking around with multiple transform properties. Secondly, it provides a way to calculate the effect of combining different transformation states. This is essential to developing support for stateful transforms.</p>
+<p>Thus far, only WebKit-based browsers such as Chrome and Safari expose a transformation matrix class to the user, <a href="http://developer.apple.com/safari/library/documentation/AudioVideo/Reference/WebKitCSSMatrixClassReference/WebKitCSSMatrix/WebKitCSSMatrix.html">WebKitCSSMatrix</a>. Firefox, despite some limited support for 2D transforms, doesn’t provide an implementation of CSSMatrix. Neither does Opera: a CSSMatrix class was added in <a href="http://www.opera.com/docs/specs/presto25/css/transforms/#css">Opera Presto 2.5</a>, but it appears to have been removed from more recent versions of their layout engine.</p>
+<p>It’s my hope that Firmin can eventually become a genuinely cross-browser library, so in that spirit I’ve written <a href="https://github.com/beastaugh/firmin/blob/8c14d35c11566053e8baf1b8178a15f9236ffafe/src/matrix.js">FirminCSSMatrix</a>, an implmentation of the CSSMatrix interface in JavaScript. Using this I’m hoping to work around the limitations of Firefox and Opera’s support for CSS transforms, and provide at least some of Firmin’s functionality in those browsers. It’s based on WebKit’s matrix code, and supports both 2D and 3D transformations. However, it’s still a little buggy, so I’ve removed it from the 1.0 release until I have time to resolve the remaining issues.</p>
+<h2 id="stateful-transforms">Stateful transforms</h2>
+<p>When the <code>transform</code> property of a DOM element is updated, the new transform has no relation to the old one. In a sense this is intuitive—one CSS property is simply being changed to another. However, for many of the things one might want to do with Firmin, it makes less sense. Think about moving a DOM element around with the <code>translate</code> functions. To move an element 400 pixels to the right, call <code>translateX</code> and pass in the element and the argument <code>400</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1"></a><span class="va">Firmin</span>.<span class="at">translateX</span>(el<span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div>
+<p>Then call <code>translateY</code> and pass in <code>200</code> to move it down 200 pixels. So far, so good.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1"></a><span class="va">Firmin</span>.<span class="at">translateY</span>(el<span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div>
+<p>Now consider moving it back to its starting point. We’ve come 400 pixels along and 200 down, so we should move it 400 to the left and 200 up. But since transforms are carried out relative not to their <em>current</em> transformation state but to their <em>initial</em> transformation state, we can’t just call <code>translateX</code> <code>translateY</code> again with <code>-400</code> and <code>-200</code> as the arguments: it would end up moving the element 400 pixels to the <em>left</em> and 200 pixels <em>above</em> its original position. Instead, we write this:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1"></a><span class="va">Firmin</span>.<span class="at">translate</span>(el<span class="op">,</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="dt">x</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="op">},</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div>
+<p>Clearly under many circumstances this won’t be a problem, but working in an absolute coordinate system when a relative one is more appropriate is liable to lead to unnecessary confusion, and there will be circumstances where keeping track of an element’s position will introduce unnecessary complexity into the code.</p>
+<p>To overcome this annoyance, Firmin comes with support for <em>stateful transforms</em>. The chaining object returned by all animation methods actually stores the previous transforms, so any new transforms applied to the element being animated can be based on its current transformation matrix. This lets us rewrite the above code to better accord with our intuitions for this situation.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">// Move the element right 400px and bind the anim variable to the current</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">// transformation state.</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="kw">var</span> anim <span class="op">=</span> <span class="va">Firmin</span>.<span class="at">translateX</span>(el<span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">// Move the element down 200px relative to its current position.</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="va">anim</span>.<span class="at">translateYR</span>(<span class="dv">200</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">// Move the element back to its origin.</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="va">anim</span>.<span class="at">translateR</span>(<span class="op">{</span><span class="dt">x</span><span class="op">:</span> <span class="dv">-400</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">-200</span><span class="op">},</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div>
+<p>Note the <strong>R</strong> suffixes: these distinguish the <em>relative transform functions</em> from their absolute counterparts. Every normal transform function, which transforms an element relative to its initial position before any transforms are applied, has a relative version which transforms the element relative to its current transformation state.</p>
+<p>Of course, the example above can be rewritten in a chained style.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1"></a><span class="va">Firmin</span>.<span class="at">translateX</span>(el<span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>      .<span class="at">translateYR</span>(<span class="dv">200</span><span class="op">,</span> <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>      .<span class="at">translateR</span>(<span class="op">{</span><span class="dt">x</span><span class="op">:</span> <span class="dv">-400</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">-200</span><span class="op">},</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div>
+<h2 id="d-transforms">3D transforms</h2>
+<p>3D transforms are also not yet widely supported—like the CSSMatrix interface, they’re only available in WebKit-based browsers like Chrome and Safari. Since Firmin itself is currently only targeted at those platforms, it already has quite a lot of 3D transform support. In particular, it includes all the 3D transform methods (with one omission, discussed below), so elements can be translated, scaled and rotated in three dimensions.</p>
+<p>I won’t spend a lot of time explaining 3D transforms, since there are plenty of articles out there which introduce them in a more comprehensive way than I can manage here. Probably the best place to start is the <a href="http://www.webkit.org/blog/386/3d-transforms/">WebKit blog post</a> which first introduced them, while the <a href="http://developer.apple.com/library/safari/#documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Transforms/Transforms.html">Apple developer documentation</a> is also good, and includes some helpful diagrams. <a href="http://www.the-art-of-web.com/css/3d-transforms/">This Art of Web article</a> might be helpful, and I have a longer list of <a href="http://pinboard.in/u:beastaugh/t:csstransforms/">related articles</a> saved on Pinboard.</p>
+<p>The major missing piece in Firmin’s support of 3D transformations is an interface for manipulating the <code>perspective</code> and <code>perspective-origin</code> properties, which control the “camera position” for the whole page, and the <code>perspective</code> transformation function, which modifies that perspective for a single element. These are vital to a really effective use of 3D transforms, so once I figure out a nice way to introduce them and explain their use, they will be added to Firmin. Good documentation is always important, but when the subject matter is slightly obscure and in all likelihood outside most developers’ experience, it’s even more vital.</p>
+<p>Apart from full support for 3D transforms, and potentially adding some more convenience functions, the one major thing Firmin is missing is some great demos. Nothing communicates the power of a library or piece of functionality as well as a demonstration of what can be accomplished with it. Unfortunately, this is not a task I have time for at the moment, but if you build something cool, <a href="mailto:benedict@eastaugh.net">do get in touch</a>.</p>]]></summary>
+</entry>
+<entry>
+    <title>How to compile your own Nginx and Passenger</title>
+    <link href="http://extralogical.net/blog/2011-03-16-howto-compile-nginx-passenger.html" />
+    <id>http://extralogical.net/blog/2011-03-16-howto-compile-nginx-passenger.html</id>
+    <published>2011-03-16T00:00:00Z</published>
+    <updated>2012-10-01</updated>
+    <summary type="html"><![CDATA[<p>Every few months I upgrade my server’s <a href="http://nginx.org">Nginx</a> and <a href="http://www.modrails.com">Passenger</a> installations, and whenever I do, it takes me a minute to remember how it all goes. This article explains how to compile them from scratch, and also how to upgrade either or both programs. My server runs Ubuntu 10.04, but it should be straightforward to modify these instructions to work on any Linux distribution or other POSIX-compliant operating system.</p>
+<h2 id="preamble">Preamble</h2>
+<p>Before we get going, a brief note on how Nginx and Passenger fit together. Nginx is a web server, much like <a href="http://httpd.apache.org/">Apache</a>. Passenger is an application server for web applications written in Ruby. Passenger provides an Nginx module, and the only way to add a module to Nginx is to compile it with that module, so even if you’re only upgrading or installing Passenger, you still need to recompile Nginx.</p>
+<p>This article is a guide to installing these two programs from scratch, but it’s also a guide to upgrading one or both. If you get lost at any point—if something happens which is outside the scope of this guide—then I strongly recommend taking a look at the Passenger <a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html">users guide</a>, which is admirably clear and comprehensive.</p>
+<p>The commands that follow need to be run as root. I’m the only admin on my system, so I just become root; if you prefer you can just prefix commands with <code>sudo</code>. Commands will be prefixed with the <code>$</code> character; anything else is output provided for expository purposes and should not be typed into your terminal.</p>
+<pre><code>$ su -</code></pre>
+<h2 id="installing-ruby">Installing Ruby</h2>
+<p>Passenger is a Ruby web server, so the first dependency you’ll need to install is <a href="http://www.ruby-lang.org">Ruby</a>. It should be available from your package manager; on Ubuntu you can use <code>apt-get</code>.</p>
+<pre><code>$ apt-get install ruby</code></pre>
+<p>I prefer to compile my own, but I shan’t cover that here. From here on in I’ll assume that you have a working, Passenger-compatible Ruby installation and <a href="http://rubygems.org/">Rubygems</a>. You’ll also need <code>wget</code> or <code>curl</code> to download files.</p>
+<h2 id="installing-other-dependencies">Installing other dependencies</h2>
+<p>Both Passenger and Nginx, as one would expect, have various dependencies. The list below is exhaustive for the configuration I outline, but if you compile more modules into Nginx then you may have to install additional prerequisites.</p>
+<pre><code>$ apt-get install build-essential libpcre3-dev libssl-dev zlib1g</code></pre>
+<p>Nginx’s HTTP rewrite module requires the <a href="http://www.pcre.org/">PCRE</a> library sources, so it can parse regular expressions in <code>location</code> directives. It also needs the <a href="http://openssl.org/">OpenSSL</a> header files for SSL support, and <a href="http://zlib.net/">zlib</a> so that responses can be compressed.</p>
+<h2 id="installing-the-passenger-gem">Installing the Passenger gem</h2>
+<p>Downloading and installing the Passenger library is extremely simple: just run</p>
+<pre><code>$ gem install passenger</code></pre>
+<p>This is a good time to note down just where the Passenger gem is installed. The authors provide a handy command to let the user know just that.</p>
+<pre><code>$ passenger-config --root
+/usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.17
+$ PASSENGER_NGINX_DIR=`passenger-config --root`/ext/nginx</code></pre>
+<h2 id="downloading-the-pcre-source">Downloading the PCRE source</h2>
+<p>If you want to install Nginx with modules that depend on the <a href="http://www.pcre.org/">PCRE</a> library, you’ll need to download its source code too. Otherwise, skip this step and move on to the next section.</p>
+<pre><code>$ cd /usr/local/src
+$ wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.31.tar.gz
+$ tar -xzvf pcre-8.31.tar.gz
+$ cd pcre-8.31
+$ PCRE_DIR=`pwd`</code></pre>
+<h2 id="compiling-nginx">Compiling Nginx</h2>
+<p>At this point you’ll need to download the Nginx source files to your server. I keep mine in <code>/usr/local/src</code>, but you can do this anywhere. As of the time of writing, the latest stable version of Nginx is 1.2.4, but of course that may well have changed by the time you read this, and so the URL to pass to <code>wget</code> will have changed too.</p>
+<pre><code>$ cd /usr/local/src
+$ wget http://nginx.org/download/nginx-1.2.4.tar.gz
+$ tar -xzvf nginx-1.2.4.tar.gz
+$ cd nginx-1.2.4
+$ NGINX_SRC_DIR=`pwd`</code></pre>
+<p>We’re now at the point where some decisions need to be made. These include where you want to install the <code>nginx</code> binary, where your Nginx config file is going to live, where it should write log files, and most importantly in this context, which modules you want to compile with it. I’m going to describe a fairly standard, minimal setup with TLS and Gzip support, the <a href="http://wiki.nginx.org/HttpSubModule">Substitution</a> module for replacing text in responses (good for embedding analytics code), as well as compiling in the Passenger module. The <a href="http://wiki.nginx.org/InstallOptions">install options</a> page on the Nginx wiki is very comprehensive if you want to deviate from the ones provided here.</p>
+<pre><code>$ ./configure \
+  --prefix=/usr/local \
+  --sbin-path=/usr/local/sbin \
+  --conf-path=/etc/nginx/nginx.conf \
+  --error-log-path=/var/log/nginx/error.log \
+  --http-log-path=/var/log/nginx/access.log \
+  --with-http_ssl_module \
+  --with-http_gzip_static_module \
+  --add-module=$PASSENGER_NGINX_DIR \
+  --with-pcre=$PCRE_DIR \
+  --with-http_sub_module
+$ make
+$ make install</code></pre>
+<h2 id="configuring-nginx-and-passenger">Configuring Nginx and Passenger</h2>
+<p>I’m only going to cover the basics of setting up and configuring Nginx and Passenger—there are plenty of other articles out there which provide comprehensive coverage of this topic. For that reason, exposition here will be relatively brief and high level; you can get the details elsewhere should you need them.</p>
+<p>Managing a web server process by hand is, of course, not something anyone wants to do—that’s what <a href="http://code.google.com/p/nginx-init-ubuntu">initialisation scripts</a> are for. Just copy the source of that script to <code>/etc/init.d/nginx</code> (depending on the details of your setup, you might need to tweak it a little), then make it writable, and add it to the default run levels so it’ll start automatically on boot. For details, consult the Linode Library articles on <a href="http://library.linode.com/web-servers/nginx/installation/">installing Nginx</a>. They have their own init script which you might prefer to the one linked above.</p>
+<pre><code>$ chmod +x /etc/init.d/nginx
+$ /usr/sbin/update-rc.d -f nginx defaults</code></pre>
+<p>The next step is to set up your <code>nginx.conf</code> file. The best way to start is to use the configuration that comes with the Nginx source as a basis for your own. Again, Linode have some excellent articles on <a href="http://library.linode.com/web-servers/nginx/configuration/">configuring Nginx</a>.</p>
+<pre><code>$ cd $NGINX_SRC_DIR
+$ cp -R conf /etc/nginx
+$ mdkir /etc/nginx/conf.d</code></pre>
+<p>Then edit <code>/etc/nginx/nginx.conf</code> and add the following line before the end of the <code>http</code> block.</p>
+<pre><code>include /etc/nginx/conf.d/*.conf;</code></pre>
+<p>That will pull in any configuration files you place in the <code>/etc/nginx/conf.d/</code> directory, including the one you’re about to add. Open up <code>/etc/nginx/conf.d/passenger.conf</code> in a text editor and add the following two lines:</p>
+<pre><code>passenger_root /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.17;
+passenger_ruby /usr/local/bin/ruby;</code></pre>
+<p>The value of the <code>passenger_root</code> variable should be the output of running <code>passenger-config --root</code>, while the second should be the path to your <code>ruby</code> binary (you can get it by running <code>which ruby</code>). Keeping this information in a separate configuration file to your main Nginx config just makes it simpler to update when you upgrade Passenger and need to change that the value of <code>passenger_root</code> to point to the new location.</p>
+<p>All that’s needed now is to let Nginx know about the <a href="http://rack.rubyforge.org/">Rack</a> application you want to run. Again, there are plenty of other articles which explain this process, particularly the relevant sections of the Passenger users guide (<a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html#deploying_a_ror_app">§3</a> for Ruby on Rails applications, <a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html#deploying_a_rack_app">§4</a> for generic Rack applications). Essentially, all that’s needed is to tell Nginx what the path to your Rack application is, and that it should use Passenger. The minimal configuration below should suffice—just put it (suitably modified to reflect the details of your site) somewhere Nginx will find it.</p>
+<pre><code>server {
+    listen 80;
+    
+    server_name myrackapp.net;
+    root /var/www/myrackapp.net/public;
+    
+    passenger_enabled on;
+    rails_env production;
+}</code></pre>
+<p>Most of this is common to all Nginx <code>server</code> directives—the ones we’re interested in are <code>passenger_enabled</code> and <code>rails_env</code>. The first makes Nginx enable Passenger for that server, while the latter specifies the environment the relevant Rack application should be run in. Of course, there are many more options available than just these two—for details, consult <a href="http://www.modrails.com/documentation/Users%20guide%20Nginx.html#_configuring_phusion_passenger">§5</a> of the guide. Now you just need to start up the server.</p>
+<pre><code>$ /etc/init.d/nginx start</code></pre>
+<h2 id="recompiling-nginx">Recompiling Nginx</h2>
+<p>If you want to install a new version of Nginx, or a new version of Passenger, you’ll have to recompile Nginx. If it’s the latter, install the new Passenger gem as described above, and then compile Nginx. There are two gotchas to this process, and one handy trick: if you ask nicely, an <code>nginx</code> binary will tell you exactly what configure arguments were passed when compiling it.</p>
+<pre><code>$ cd $NGINX_SRC_DIR
+$ nginx -V
+nginx version: nginx/1.2.4
+built by gcc 4.4.3 (Ubuntu 4.4.3-4ubuntu5.1)
+TLS SNI support enabled
+configure arguments: --prefix=/usr/local --sbin-path=/usr/local/sbin --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre=/usr/local/src/pcre-8.31  --add-module=/usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.17/ext/nginx --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module</code></pre>
+<p>This is incredibly handy: you don’t need to write down or reconstruct what options you chose you compiled Nginx, as the program remembers them all for you. Now, if you’ve just installed a new version of Passenger, you can’t just copy and paste the arguments verbatim—you have to change the value of the <code>add-module</code> flag to point to the location of the new Passenger gem.</p>
+<p>Run <code>./configure</code> with the appropriate flags and then <code>make</code> as above. Since you’re recompiling, presumably your existing <code>nginx</code> program is running at this point, so you need to stop it before installing the new binary. If you’re reinstalling Passenger, you must update your <code>passenger.conf</code> file with the new path to the library. Then stop <code>nginx</code>, install the new binary, and restart it.</p>
+<pre><code>$ /etc/init.d/nginx stop
+$ make install
+$ /etc/init.d/nginx start</code></pre>]]></summary>
+</entry>
+<entry>
+    <title>Truth tables in Haskell</title>
+    <link href="http://extralogical.net/blog/2011-03-02-haskell-truth-tables.html" />
+    <id>http://extralogical.net/blog/2011-03-02-haskell-truth-tables.html</id>
+    <published>2011-03-02T00:00:00Z</published>
+    <updated>2011-03-02T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>There are few languages as simple yet as widely used as classical propositional logic—perhaps only elementary arithmetic can claim a similar status. The <a href="http://en.wikipedia.org/wiki/Propositional_calculus">propositional calculus</a>, as it is also known, is a staple of first-year university logic courses.</p>
+<p>As I recall from when I did just such a course, one of the most tedious parts was calculating truth tables for various complex logical expressions. Once one has grasped the basic concept, the rest is purely mechanical, and while it might be useful in the exam, beyond that… well, that’s what computers are for.</p>
+<p><a href="/projects/hatt">Hatt</a> is a command-line program for doing just that: parsing expressions of the propositional calculus and printing their truth tables. Assuming you have the <a href="http://hackage.haskell.org/platform/">Haskell platform</a> installed, just run the following to install Hatt.</p>
+<pre><code>cabal install hatt</code></pre>
+<p>Then just run <code>hatt</code> to enter the interactive mode. Here’s an example session.</p>
+<pre><code>&gt; (A -&gt; (B | ~C))
+A B C | (A -&gt; (B | ~C))
+-----------------------
+T T T | F
+T T F | F
+T F T | F
+T F F | F
+F T T | F
+F T F | F
+F F T | T
+F F F | F
+&gt; pretty
+Enabling pretty-printing.
+&gt; (P &lt;-&gt; (~Q &amp; (R -&gt; S)))
+P Q R S | (P ↔ (¬Q ∧ (R → S)))
+------------------------------
+T T T T | F
+T T T F | F
+T T F T | F
+T T F F | F
+T F T T | F
+T F T F | F
+T F F T | F
+T F F F | T
+F T T T | T
+F T T F | T
+F T F T | T
+F T F F | T
+F F T T | T
+F F T F | T
+F F F T | T
+F F F F | F</code></pre>
+<p>The <code>hatt</code> binary isn’t the only thing you get when you install the package. There’s also the <code>Data.Logic.Propositional</code> module, which allows you to plug this functionality—parsing, pretty-printing, truth tables, some simple checks like whether an expression is a tautology or a contradiction—into any Haskell program.</p>
+<p>The <a href="http://hackage.haskell.org/packages/archive/hatt/latest/doc/html/Data-Logic-Propositional.html">API</a> isn’t terribly extensive, but it’s enough to play around with, and should be really easy to extend if you wanted, for example, to add the facility to express proofs. I’m always amazed by how much one can accomplish with how little in Haskell: Hatt is under 300 lines of code, and a lot of that is the command-line program which is bloated by help text and the like.</p>
+<p>This was, admittedly, a fairly trivial project, but it was a good way to improve my familiarity with Haskell, particularly <a href="http://www.haskell.org/haskellwiki/Parsec">Parsec</a>. Picking a small, manageable project with precise goals proved to be a fun way to keep my hand in and pick up a few new skills, and I highly recommend it as a technique. If you’re interested in taking a look at the source code, the entire project is <a href="https://github.com/beastaugh/hatt">available on GitHub</a> under the BSD license.</p>]]></summary>
+</entry>
+<entry>
+    <title>Approaches to currying in JavaScript</title>
+    <link href="http://extralogical.net/blog/2010-08-21-currying-javascript.html" />
+    <id>http://extralogical.net/blog/2010-08-21-currying-javascript.html</id>
+    <published>2010-08-21T00:00:00Z</published>
+    <updated>2010-08-21T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>JavaScript’s dynamic nature makes it hard to straightforwardly apply many functional programming idioms. One example of this is <a href="http://en.wikipedia.org/wiki/Currying">currying</a>: any function may be passed an arbitrary number of arguments, making it impossible to write a truly general currying function.</p>
+<p>To recap, currying is a technique for transforming a function which accepts <em>n</em> parameters into a nest of partially applicable functions. Consider the function <em>f = λxyz.M</em>, which has three parameters, <em>x</em>, <em>y</em> and <em>z</em>. By currying, we obtain a new function <em>f* = λx.(λy.(λz.M))</em>.</p>
+<p>One simple example is currying an <code>add</code> function which accepts 2 parameters and returns the result of adding them together.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">var</span> add <span class="op">=</span> <span class="kw">function</span>(a<span class="op">,</span> b) <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="op">};</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">var</span> curriedAdd <span class="op">=</span> <span class="kw">function</span>(a) <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="cf">return</span> <span class="kw">function</span>(b) <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>        <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="op">};</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="op">};</span></span></code></pre></div>
+<p>A function which returns the result of evaluating a quadratic expression demonstrates more clearly the ‘nesting’ of functions which currying produces.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">var</span> quadratic <span class="op">=</span> <span class="kw">function</span>(a<span class="op">,</span> b<span class="op">,</span> c<span class="op">,</span> x) <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">return</span> a <span class="op">*</span> x <span class="op">*</span> x <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> c<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="op">};</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">var</span> curriedQuadratic <span class="op">=</span> <span class="kw">function</span>(a) <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">return</span> <span class="kw">function</span>(b) <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="cf">return</span> <span class="kw">function</span>(c) <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>            <span class="cf">return</span> <span class="kw">function</span>(x) <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>                <span class="cf">return</span> a <span class="op">*</span> x <span class="op">*</span> x <span class="op">+</span> b <span class="op">*</span> x <span class="op">+</span> c<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>            <span class="op">};</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>        <span class="op">};</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="op">};</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="op">};</span></span></code></pre></div>
+<p>Given a pattern like this, the obvious question is how to generalise it. Ideally, we would write a <code>curry</code> function to automatically transform functions like <code>quadratic</code> into ones like <code>curriedQuadratic</code>. The simplest approach is to make curried functions always return a single wrapping function:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">var</span> naiveCurry <span class="op">=</span> <span class="kw">function</span>(f) <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">var</span> args <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    </span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">return</span> <span class="kw">function</span>() <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="kw">var</span> largs <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="cf">return</span> <span class="va">f</span>.<span class="at">apply</span>(<span class="kw">this</span><span class="op">,</span> <span class="va">args</span>.<span class="at">concat</span>(largs))<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="op">};</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="op">};</span></span></code></pre></div>
+<p>Clearly this is not true currying, except for functions of arity 2. We cannot use it to perform the transformation from <code>quadratic</code> to <code>curriedQuadratic</code>.</p>
+<p>A cleverer approach would be to detect the arity of the function we wish to curry. To do this, we can use the length property of the function, which returns the number of named arguments the function accepts. <code>Math.tan.length</code> is 1, while <code>parseInt.length</code> is 2.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">var</span> curryByLength <span class="op">=</span> <span class="kw">function</span>(f) <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">var</span> arity <span class="op">=</span> <span class="va">f</span>.<span class="at">length</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>        args  <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    </span>
+<span id="cb4-5"><a href="#cb4-5"></a>    accumulator <span class="op">=</span> <span class="kw">function</span>() <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>        <span class="kw">var</span> largs <span class="op">=</span> args<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>        </span>
+<span id="cb4-8"><a href="#cb4-8"></a>        <span class="cf">if</span> (<span class="kw">arguments</span>.<span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>            <span class="co">// We must be careful to copy the `args` array with `concat` rather</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>            <span class="co">// than mutate it; otherwise, executing curried functions can have</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>            <span class="co">// strange non-local effects on other curried functions.</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>            largs <span class="op">=</span> <span class="va">largs</span>.<span class="at">concat</span>(<span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>        <span class="op">}</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>        </span>
+<span id="cb4-15"><a href="#cb4-15"></a>        <span class="cf">if</span> (<span class="va">largs</span>.<span class="at">length</span> <span class="op">&gt;=</span> arity) <span class="op">{</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>            <span class="cf">return</span> <span class="va">f</span>.<span class="at">apply</span>(<span class="kw">this</span><span class="op">,</span> largs)<span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>            <span class="cf">return</span> <span class="va">curryByLength</span>.<span class="at">apply</span>(<span class="kw">this</span><span class="op">,</span> [f].<span class="at">concat</span>(largs))<span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>        <span class="op">}</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>    <span class="op">};</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>    </span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="cf">return</span> <span class="va">args</span>.<span class="at">length</span> <span class="op">&gt;=</span> arity <span class="op">?</span> <span class="at">accumulator</span>() : accumulator<span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="op">};</span></span></code></pre></div>
+<p>However, the length property of any given JavaScript function can easily mislead. To begin with, we often find it useful to define functions with optional parameters.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">var</span> someFunction <span class="op">=</span> <span class="kw">function</span>(a<span class="op">,</span> flag) <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">if</span> (flag) <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>        <span class="co">// Some computation involving a</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="co">// Some other computation involving a</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="op">}</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="op">};</span></span></code></pre></div>
+<p>Now consider a variadic function, like <code>Math.max</code>, which returns the largest number amongst its arguments. Despite the fact that it can in fact be called with any number of arguments, including 0 and 1, it has a length property of 2. Consequently, our ‘smarter’ curry function will only work with <code>Math.max</code> up to a point. This will throw a type error, even though <code>Math.max</code> will accept three arguments quite happily:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1"></a><span class="at">curryByLength</span>(<span class="va">Math</span>.<span class="at">max</span>)(<span class="dv">1</span>)(<span class="dv">2</span>)(<span class="dv">3</span>)<span class="op">;</span></span></code></pre></div>
+<p>Currying <code>Math.max</code> limits its utility to discriminating between two numbers, not <em>n</em> numbers. We can easily think of similar examples—other variadic functions, functions with optional arguments, and similarly clever abuses of JavaScript’s dynamic arguments to create complex APIs. jQuery’s <code>bind</code> method could be considered <a href="http://api.jquery.com/bind/">an example</a> of this: the event handler can be passed to the method as either the second or the third argument, depending on whether the user wishes to use the optional <code>eventData</code> parameter or not.</p>
+<p>It is easy to see that there is no general way of resolving this issue: currying is essentially at odds with variadic functions and the ability to change the number of arguments a function accepts at runtime. However, one’s choices are not limited simply to the approaches discussed above; there are alternatives, even if they do not fully dispose of the problem of dynamic arity.</p>
+<p>Firstly, one can simply leave things as they are, with the <code>curry</code> function having a known limitation around functions with dynamic arity. The burden is placed on the user to ensure they take care when currying.</p>
+<p>Alternatively, one could make the arity an explicit component of the <code>curry</code> function. This differs from the implicit detection of the arity via the curried function’s length property (however, the implementation is almost identical).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">var</span> curryWithExplicitArity <span class="op">=</span> <span class="kw">function</span>(f<span class="op">,</span> n) <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">var</span> args <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">,</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    </span>
+<span id="cb7-4"><a href="#cb7-4"></a>    accumulator <span class="op">=</span> <span class="kw">function</span>() <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="kw">var</span> largs <span class="op">=</span> args<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>        </span>
+<span id="cb7-7"><a href="#cb7-7"></a>        <span class="cf">if</span> (<span class="kw">arguments</span>.<span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>            largs <span class="op">=</span> <span class="va">largs</span>.<span class="at">concat</span>(<span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="op">}</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>        </span>
+<span id="cb7-11"><a href="#cb7-11"></a>        <span class="cf">if</span> (<span class="va">largs</span>.<span class="at">length</span> <span class="op">&gt;=</span> n) <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>            <span class="cf">return</span> <span class="va">f</span>.<span class="at">apply</span>(<span class="kw">this</span><span class="op">,</span> largs)<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>            <span class="cf">return</span> <span class="va">curryByLength</span>.<span class="at">apply</span>(<span class="kw">this</span><span class="op">,</span> [f].<span class="at">concat</span>(largs))<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>        <span class="op">}</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="op">};</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>    </span>
+<span id="cb7-18"><a href="#cb7-18"></a>    <span class="cf">return</span> <span class="va">args</span>.<span class="at">length</span> <span class="op">&gt;=</span> n <span class="op">?</span> <span class="at">accumulator</span>() : accumulator<span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="op">};</span></span></code></pre></div>
+<p>Finally, one could have entirely different <code>curry</code> functions for each arity. This has the benefit of being explicit, and while it doesn’t solve the problem of functions with dynamic arity, it does mean that one doesn’t have to specify the arity of the function one wishes to curry each time as an additional parameter. Instead of writing <code>curry(f, 3)</code>, one can simply write <code>curry3(f)</code>.</p>
+<p>In fact, there is a way to combine these last two approaches, by writing a function which generates curry functions for any given arity.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">var</span> ncurry <span class="op">=</span> <span class="kw">function</span>(n) <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">var</span> _curry <span class="op">=</span> <span class="kw">function</span>(f) <span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>        <span class="kw">var</span> args <span class="op">=</span> <span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>        </span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="cf">return</span> <span class="kw">function</span>() <span class="op">{</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>            <span class="kw">var</span> largs <span class="op">=</span> <span class="va">args</span>.<span class="at">concat</span>(<span class="va">Array</span>.<span class="va">prototype</span>.<span class="va">slice</span>.<span class="at">call</span>(<span class="kw">arguments</span><span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>            </span>
+<span id="cb8-8"><a href="#cb8-8"></a>            <span class="cf">if</span> (<span class="va">largs</span>.<span class="at">length</span> <span class="op">&lt;</span> n) <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>                <span class="va">largs</span>.<span class="at">unshift</span>(f)<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>                <span class="cf">return</span> <span class="va">_curry</span>.<span class="at">apply</span>(<span class="kw">null</span><span class="op">,</span> largs)<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>                <span class="cf">return</span> <span class="va">f</span>.<span class="at">apply</span>(<span class="kw">null</span><span class="op">,</span> largs)<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>            <span class="op">}</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>        <span class="op">};</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="op">};</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>    </span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="cf">return</span> _curry<span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="op">};</span></span></code></pre></div>
+<p>For common use cases such as functions which accept 2 or 3 arguments, one can write simple aliases using <code>ncurry</code>, while one can always use <code>ncurry</code> ‘inline’ where necessary.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">var</span> curry  <span class="op">=</span> <span class="at">ncurry</span>(<span class="dv">2</span>)<span class="op">,</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>    curry3 <span class="op">=</span> <span class="at">ncurry</span>(<span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">// Presumably `f7` is a function which accepts 7 arguments</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">var</span> fc7 <span class="op">=</span> <span class="at">ncurry</span>(<span class="dv">7</span>)(f7)<span class="op">;</span></span></code></pre></div>
+<p>However, oftentimes something along the lines of <code>curryByLength</code> is preferable. If the library of functions one is working with consists of a set of functions with well-defined lists of parameters, then implicit rather than explicit conversion can be more convenient and more natural; it is, after all, rather nicer to be able to write <code>curry(f)</code> than <code>curry(f, n)</code> or even <code>ncurry(n)(f)</code>.</p>
+<p>Ultimately which approach one decides to take must be based on understanding of the properties of the functions one is working with. A choice of currying function will then arise naturally—and after all, one can always use several. Both of these approaches are <a href="/projects/udon">available in Udon</a>, my library for functional programming in JavaScript, as <code>Udon.curry</code> and <code>Udon.ncurry</code>.</p>
+<h2 id="further-reading-prior-art">Further reading &amp; prior art</h2>
+<ul>
+<li><a href="http://web.archive.org/web/20100808010715/http://www.svendtofte.com/code/curried_javascript">Curried JavaScript functions</a> by Svend Tofte;</li>
+<li><a href="http://ejohn.org/blog/partial-functions-in-javascript/">Partial Application in JavaScript</a> by John Resig;</li>
+<li><a href="http://www.danwebb.net/2006/11/3/from-the-archives-cleaner-callbacks-with-partial-application">Cleaner Callbacks With Partial Application</a> by Dan Webb;</li>
+<li><a href="http://web.archive.org/web/20100809071747/http://osteele.com/sources/javascript/functional/">Functional JavaScript</a>, a library by Oliver Steele;</li>
+<li><a href="http://www.cs.nott.ac.uk/~gmh/faq.html#currying">Currying</a> (from the comp.lang.functional FAQ);</li>
+<li><a href="http://c2.com/cgi/wiki?CurryingSchonfinkelling">Currying Schönfinkelling</a> (from the c2 wiki);</li>
+<li><a href="http://www.haskell.org/haskellwiki/Currying">Currying in Haskell</a> (from the Haskell wiki);</li>
+<li><a href="http://comonad.com/reader/2009/curried-scheme/">Curried Scheme</a> by Edward Kmett.</li>
+</ul>]]></summary>
+</entry>
+
+</feed>

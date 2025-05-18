@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Developing arithmetic in Gödel's system T | Benedict Eastaugh</title>
+    
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <link rel="alternate" type="application/atom+xml" href="../blog.atom" title="Extralogical">
+    
+    <meta name="viewport" content="width=device-width,
+          minimum-scale=1.0">
+    
+</head><body>
+    <header id="header">
+        <div class="wrapper">
+            <h1 id="site-title" class="block-a">
+                <a href="../">Benedict Eastaugh</a>
+            </h1>
+            
+            <nav id="navigation" class="block-b">
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../teaching">Teaching</a></li>
+                <li><a href="../talks.html">Talks</a></li>
+                <li><a href="../files/cv.pdf">CV</a></li>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="wrapper">
+        <main id="main">
+            <article>
+    <h1>Developing arithmetic in Gödel's system T</h1>
+    
+    <p class="date">April 11, 2011 | Benedict Eastaugh</p>
+    
+    <p>This year I’ve been running a reading group on type theory. Our primary text is <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a> by Jean-Yves Girard, Yves Lafont and Paul Taylor. The focus of the book is the development of the typed λ-calculus, with a strong proof-theoretic slant, these two perspectives being unified by the <a href="http://en.wikipedia.org/wiki/Curry–Howard_correspondence">Curry-Howard correspondence</a>. It begins by exploring the connections between <a href="http://en.wikipedia.org/wiki/Intuitionistic_logic">intuitionistic logic</a> and the <a href="http://en.wikipedia.org/wiki/Simply_typed_lambda_calculus">simply typed lambda calculus</a>, and works up to a fairly in-depth study of <a href="http://en.wikipedia.org/wiki/System_F">System F</a>.</p>
+<p>One of the intermediate steps is the system <em>T</em>, originally developed by Kurt Gödel in his <a href="http://en.wikipedia.org/wiki/Dialectica_interpretation">Dialectica interpretation</a>, and reformulated by Tait in 1967. I won’t try to cover the history here—there are plenty of articles out there if you’re interested. (The names of the articles alluded to are given in the references at the end.)</p>
+<p>The modern formulation of <em>T</em> is as a typed λ-calculus with natural number and boolean types. In chapter 7 of <em>Proofs and Types</em>, Girard shows how the natural numbers can be represented in <em>T</em>, and provides a definition of addition based on the recursion operator <span class="math inline">R</span>. He goes on to say that</p>
+<blockquote>
+<p>Among easy exercises in this style, one can amuse oneself by defining multiplication, exponenential, predecessor <em>etc.</em></p>
+</blockquote>
+<p>So, let’s amuse ourselves! Thinking about these simple examples is helpful because it gives a working demonstration of how the recursion operator adds power back to the language which was lost when the restrictive type system was introduced.</p>
+<p>For example, the untyped λ-calculus allows one to use <a href="http://en.wikipedia.org/wiki/Church_encoding">Church encoding</a> to represent the natural numbers, but in the simply typed lambda calculus one is barred from forming the relevant terms by the requirement that every term be well-typed.</p>
+<p>During the reading group meeting where we discussed this chapter, we managed to assemble a working definition for multiplication, which I’ll present below along with the other arithmetical functions Girard suggests. However, before we get onto that, I’m going to briefly sketch how the type of natural numbers <span class="math inline">Nat</span> is defined in <em>T</em>; the introduction and elimination rules for terms of that type, on which everything else is built; and how an addition function can be defined in terms of those rules.</p>
+<p>A small niggle: Girard actually talks about an <em>integer type</em> <span class="math inline">Int</span>. When one examines the nature of the type it becomes clear that what’s intended is a natural number type, so I’m going to talk solely about natural numbers and call the type in question <span class="math inline">Nat</span>, not <span class="math inline">Int</span>.</p>
+<h2 id="natural-numbers-in-t">Natural numbers in <em>T</em></h2>
+<p>System <em>T</em> is a variant of the simply typed lambda calculus, so it has three sorts of rules: those stating which <em>types</em> exist; those stating which <em>terms</em> of those types can be formed; and reduction rules stating how some terms can be reduced to others. These are spelled out in §3.1 of <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a>, so if any of the following doesn’t make sense, I recommend checking that out (the book is freely available from the link above).</p>
+<p>For system <em>T</em>, there are also two constant types, <span class="math inline">Nat</span> and <span class="math inline">Bool</span>; here we shall only be concerned with <span class="math inline">Nat</span> so I shall omit the rules mentioning <span class="math inline">Bool</span>. The additional term formation rules for system <em>T</em> specify how one can introduce and eliminate terms of <span class="math inline">Nat</span> and <span class="math inline">Bool</span>. The introduction rules are:</p>
+<ul>
+<li><span class="math inline">O</span> is a (constant) term of type <span class="math inline">Nat</span>;</li>
+<li>If <span class="math inline"><em>t</em></span> is a term of <span class="math inline">Nat</span>, then <span class="math inline">S<em>t</em></span> is a term of type <span class="math inline">Nat</span>.</li>
+</ul>
+<p>These mirror their equivalents in Peano Arithmetic almost exactly—that is, they represent zero and the successor function. There is also the elimination rule for <span class="math inline">Nat</span>, which introduces the recursion operator <span class="math inline">R</span>:</p>
+<ul>
+<li>If <span class="math inline"><em>u</em></span>, <span class="math inline"><em>v</em></span>, <span class="math inline"><em>t</em></span> are of types respectively <span class="math inline"><em>U</em></span>, <span class="math inline"><em>U</em> → (Nat → <em>U</em>)</span> and <span class="math inline">Nat</span>, then <span class="math inline">R<em>u</em><em>v</em><em>t</em></span> is of type <span class="math inline"><em>U</em></span>.</li>
+</ul>
+<p>The recursion operator allows us to combine the introduction rules to give recursive definitions of arithmetic operations such as addition and multiplication in a form not too far removed from their counterparts in Peano Arithmetic. Its reduction rule is given by two cases:</p>
+<ul>
+<li><span class="math inline">R<em>u</em><em>v</em>O</span> reduces to <span class="math inline"><em>u</em></span>.</li>
+<li><span class="math inline">R<em>u</em><em>v</em>(S<em>x</em>)</span> reduces to <span class="math inline"><em>v</em>(R<em>u</em><em>v</em><em>x</em>)<em>x</em></span>.</li>
+</ul>
+<p>The first is the <em>base case</em>, which ensures that the recursion is well-founded. The second rule gives, for the recursive case, a way of eliminating an instance of the recursion operator. The term it reduces to looks more complex than the one we started with, but it’s clear that eventually we’re going to run out of successors and the reduction process will terminate (a proof of this is given in §7.2 of <em>Proofs and Types</em>).</p>
+<h2 id="addition">Addition</h2>
+<p>With the preamble out of the way, we’re finally ready to start defining the usual arithmetic functions within <em>T</em>. The easiest place to start is with the definition of addition.</p>
+<blockquote>
+<p><span class="math inline"><em>x</em> + 0 = <em>x</em></span></p>
+<p><span class="math inline"><em>x</em> + <em>S</em>(<em>y</em>) = <em>S</em>(<em>x</em> + <em>y</em>)</span></p>
+</blockquote>
+<p>There’s no recursion operator in sight in this definition, but of course there is recursion occurring. The first equation gives the base case, defining the result when the addition function is used to combine a number <span class="math inline"><em>x</em></span> with <span class="math inline">0</span>. The second equation defines the recursive case, giving the result when we add the successor of some number <span class="math inline"><em>y</em></span> to some number <span class="math inline"><em>x</em></span>. The recursion operator <span class="math inline">R</span> has three arguments, and the first two map to these cases: the value of the base case (here it would be <span class="math inline"><em>x</em></span>) and the function to apply in the recursive case (here, the successor function).</p>
+<p>With this in mind, we can formulate an addition function in <em>T</em> pretty straightforwardly. The variables bound by lambda abstractions have been given type annotations, just to make clear how the types of these terms relate to those specified in the introduction and elimination rules for terms of type <span class="math inline">Nat</span>. I shall omit these annotations from the definitions in the rest of the article.</p>
+<blockquote>
+<p><span class="math inline">add = <em>λ</em><em>x</em><sup>Nat</sup>.<em>λ</em><em>y</em><sup>Nat</sup>.R<em>x</em>(<em>λ</em><em>z</em><sup>Nat</sup>.<em>λ</em><em>w</em><sup>Nat</sup>.S<em>z</em>)<em>y</em></span></p>
+</blockquote>
+<p>The second term given to <span class="math inline">R</span> is just a double lambda abstraction over <span class="math inline">S<em>x</em></span>, representing a two-argument function; the second argument (the numbers accumulating on the right of the reduction) will always be thrown away. The type of the term must be, by the definition we gave earlier, <span class="math inline"><em>U</em> → (Nat → <em>U</em>)</span>. In this case we’re saying that the type <span class="math inline"><em>U</em></span> is in fact the constant type <span class="math inline">Nat</span>, so the term has a type of <span class="math inline">Nat → (Nat → Nat)</span>.</p>
+<p>I should note that there is no mechanism in <em>T</em> for giving names to definitions (i.e. let binding), so equations like the one given above should simply be seen as expressing abbreviations, not as expressions in the language of <em>T</em>, although the lambda term on the right hand side certainly is.</p>
+<h2 id="multiplication">Multiplication</h2>
+<p>Again, let’s begin with the definition of multiplication we find in Peano Arithmetic.</p>
+<blockquote>
+<p><span class="math inline"><em>x</em> ⋅ 0 = 0</span></p>
+<p><span class="math inline"><em>x</em> ⋅ <em>S</em>(<em>y</em>) = (<em>x</em> ⋅ <em>y</em>) + <em>x</em></span></p>
+</blockquote>
+<p>Here we can see that in the base case, when we combine <span class="math inline">0</span> with <span class="math inline"><em>x</em></span> the result is <span class="math inline">0</span>. In contrast, in the base case for addition when we combine <span class="math inline">0</span> with <span class="math inline"><em>x</em></span> the result is <span class="math inline"><em>x</em></span>. This is reflected in the following definition of multiplication in <em>T</em>, with <span class="math inline">O</span> as the base case, and <em>addition</em> as the operation applied in the successor case.</p>
+<blockquote>
+<p><span class="math inline">mult = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.(add)<em>x</em><em>z</em>)<em>y</em></span></p>
+</blockquote>
+<p>Expanding the definition of <span class="math inline">add</span> in <span class="math inline">mult</span> (with some trivial α-conversion and β-reduction), it’s easy to see the double recursion that we also see in the <span class="math inline">PA</span> definitions.</p>
+<blockquote>
+<p><span class="math inline">mult = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.R<em>x</em>(<em>λ</em><em>u</em>.<em>λ</em><em>v</em>.S<em>u</em>)<em>z</em>)<em>y</em></span></p>
+</blockquote>
+<h2 id="exponentiation">Exponentiation</h2>
+<p>Just as multiplication is built on addition, adding an extra layer of recursion, so exponentiation is built on multiplication. The <span class="math inline">PA</span> equations are</p>
+<blockquote>
+<p><span class="math inline"><em>x</em><sup>0</sup> = 1</span></p>
+<p><span class="math inline"><em>x</em><sup><em>S</em>(<em>y</em>)</sup> = <em>x</em><sup><em>y</em></sup> ⋅ <em>x</em></span></p>
+</blockquote>
+<p>Again, all we need to do to define this new function is state the base case (<span class="math inline">SO</span>, corresponding to the rule that any number raised to exponent 0 is 1) and the function to apply in the recursive case (multiplication).</p>
+<blockquote>
+<p><span class="math inline">exp = <em>λ</em><em>x</em>.<em>λ</em><em>y</em>.RSO(<em>λ</em><em>z</em>.<em>λ</em><em>w</em>.((mult)<em>x</em><em>z</em>))<em>y</em></span></p>
+</blockquote>
+<h2 id="predecessor">Predecessor</h2>
+<p>The predecessor function is given by the following equations.</p>
+<blockquote>
+<p><span class="math inline"><em>P</em><em>r</em><em>e</em><em>d</em>(0) = 0</span></p>
+<p><span class="math inline"><em>P</em><em>r</em><em>e</em><em>d</em>(<em>S</em>(<em>x</em>)) = <em>x</em></span></p>
+</blockquote>
+<p>Compared to the nested recursions given above, the definition of the predecessor function in <em>T</em> is strikingly simple.</p>
+<blockquote>
+<p><span class="math inline">pred = <em>λ</em><em>x</em>.RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)<em>x</em></span></p>
+</blockquote>
+<p>The insight which allows one to derive it is similarly simple. An application of the predecessor function to some successor (in the case of <span class="math inline">O</span> the predecessor will simply be <span class="math inline">O</span> too) will be of this form: <span class="math inline">RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)(S<em>x</em>)</span>. When we look at the reduced term after one reduction, we have something like <span class="math inline">(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)(RO(<em>λ</em><em>y</em>.<em>λ</em><em>z</em>.<em>z</em>)<em>x</em>)<em>x</em></span>.</p>
+<p>Ignore the new occurrence of the recursion operator; just consider it as another term. Instead, look at the whole formula as an application. Clearly, the first argument to the function on the left will always be discarded: the whole term will always reduce simply to <span class="math inline"><em>x</em></span>, the predecessor of <span class="math inline">S<em>x</em></span>, our initial argument.</p>
+<h2 id="references-further-reading">References &amp; further reading</h2>
+<ul>
+<li>Girard, Lafont and Taylor’s <a href="http://www.PaulTaylor.EU/stable/Proofs+Types.html"><em>Proofs and Types</em></a> is the primary reference for this article.</li>
+<li>System <em>T</em> was first introduced by Kurt Gödel in his 1958 <em>Dialectia</em> article ‘Über eine bisher noch nicht benützte Erweiterung des finiten Standpunktes’, which is reproduced (with an English translation) in volume II of his <a href="http://ukcatalogue.oup.com/product/9780195147216.do"><em>Collected Works</em></a>, edited by Feferman et al.</li>
+<li>The more modern version of <em>T</em> which Girard et al. work from was first given by William Tait in his 1967 <a href="http://www.aslonline.org/journals-journal.html"><em>JSL</em></a> article, ‘Intensional interpretation of functionals of finite type I’.</li>
+<li>From a programming languages perspective, Benjamin Pierce provides a good introduction to the simply typed lambda calculus in chapter 9 of his book <a href="http://www.cis.upenn.edu/~bcpierce/tapl/"><em>Types and Programming Languages</em></a>.</li>
+<li>A more general introduction to the λ-calculus is Hindley and Seldin’s <a href="http://www.cambridge.org/gb/knowledge/isbn/item1175709/"><em>Lambda-Calculus and Combinators</em></a>, while Barendregt’s <a href="http://mathgate.info/cebrown/notes/barendregt.php"><em>The Lambda Calculus: Its Syntax and Semantics</em></a> is the definitive reference work in the field.</li>
+</ul>
+</article>
+
+        </main>
+    </section>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body></html>

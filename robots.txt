@@ -1,0 +1,7 @@
+# Do you like our owl?
+User-agent: *
+Crawl-delay: 10
+
+# Don't crawl teaching materials
+User-agent: *
+Disallow: /files/teaching/

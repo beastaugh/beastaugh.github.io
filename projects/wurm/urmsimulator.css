@@ -1,0 +1,98 @@
+body {
+    font-size: 14pt;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0;
+}
+
+.no-js-notice {
+    color: red;
+    text-weight: bold;
+}
+
+header, footer {
+    padding: 24px 36px;
+    background: #F0F0F0;
+    color: #19344c;
+    font-family: "Palatino", serif;
+    text-transform: lowercase;
+}
+
+h1 {
+    font-size: 24pt;
+    margin: 0;
+    display: inline;
+}
+
+.tagline {
+    font-size: 18pt;
+    font-style: italic;
+    margin: 0 0 0 24pt;
+    display: inline;
+}
+
+section {
+    padding: 24px 36px;
+}
+
+.urm-program-input {
+    display: none; /* Hide by default, JS should show when enabled */
+}
+
+.urm-program-input textarea,
+.urm-program-input input[type=text] {
+    font-family: "SF Mono", Monaco, monospace;
+    font-size: 12pt;
+}
+
+.urm-intermediate-output {}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    font-weight: bold;
+}
+
+th, td {
+    margin: 0;
+    border: 1px solid #999;
+    padding: 8px 12px;
+    font-family: "SF Mono", Monaco, monospace;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+table .code {
+    text-align: left;
+}
+
+tr:nth-of-type(odd) th,
+tr:nth-of-type(odd) td {
+    background-color: #F7F7F7;
+}
+
+tr:first-child th {
+    background-color: #DEDEDE;
+}
+
+table .register.initial {
+    background-color: #FFEDC9;
+}
+
+table .register.updated {
+    background-color: #C7E6FC;
+}
+
+table .register.overflowed {
+    background-color: #E8AAA6;
+}
+
+table .register.final {
+    background-color: #DEFFD2;
+}
+
+.high-score-error {
+    font-weight: bold;
+    color: red;
+}
